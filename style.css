@@ -1,0 +1,357 @@
+
+        /* CSS Variables for Theming */
+        :root {
+            /* Dark Theme (Default) */
+            --bg-color: #0d1117;
+            --text-color: #c9d1d9;
+            --primary-color: #58a6ff;
+            --secondary-color: #8b949e;
+            --card-bg-color: rgba(13, 17, 23, 0.7);
+            --card-border-color: rgba(48, 54, 61, 0.5);
+            --particle-color: #58a6ff;
+        }
+
+        .light-theme {
+            /* Light Theme */
+            --bg-color: #f0f2f5;
+            --text-color: #333;
+            --primary-color: #1a73e8;
+            --secondary-color: #616161;
+            --card-bg-color: rgba(255, 255, 255, 0.7);
+            --card-border-color: rgba(220, 220, 220, 0.5);
+            --particle-color: #6c63ff;
+        }
+
+        /* General body styling for a scrollable layout */
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            transition: background-color 0.5s ease;
+        }
+
+        /* The canvas is now a fixed background layer */
+        #three-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1; /* Place it behind the content */
+        }
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Overlay and content styling */
+        .portfolio-overlay {
+            position: relative;
+            width: 100%;
+            min-height: 100vh; /* Allow for scrolling */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Container for each full-screen section */
+        .content-section {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 0; /* Add some padding for spacing */
+            box-sizing: border-box;
+        }
+
+        .content-card {
+            background: var(--card-bg-color);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid var(--card-border-color);
+            padding: 2.5rem;
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* Styles for the fixed navigation bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1.5rem 0;
+            width: 100%;
+            background: var(--card-bg-color);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--card-border-color);
+            z-index: 10;
+        }
+
+        .nav-link {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Styles for the footer */
+        .footer {
+            padding: 2rem 0;
+            width: 100%;
+            background: var(--card-bg-color);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--card-border-color);
+            text-align: center;
+            font-size: 0.8rem;
+            pointer-events: auto;
+        }
+        
+        /* Headings and text styling */
+        h1, h2, h3 {
+            font-weight: 700;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(88, 166, 255, 0.5);
+            margin-top: 0;
+            transition: color 0.5s ease, text-shadow 0.5s ease;
+        }
+
+        .light-theme h1, .light-theme h2, .light-theme h3 {
+             text-shadow: none;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-top: 2rem;
+        }
+
+        p {
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* Styling for the skills list */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem; /* Increased gap to make space for icons */
+            margin-top: 1rem;
+        }
+        
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            transition: transform 0.2s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .skill-item i {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        
+        /* Hover animation for icons */
+        .skill-item:hover i {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+        
+        .skill-item img {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Social media links styling */
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Contact button styling */
+        .contact-btn {
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 2rem;
+            transition: background-color 0.3s ease, transform 0.2s ease, color 0.5s ease;
+        }
+
+        .contact-btn:hover {
+            background-color: #79c0ff;
+            transform: translateY(-2px);
+        }
+        
+        .light-theme .contact-btn {
+            color: #fff;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid var(--card-border-color);
+            text-align: left;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .project-card-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--card-border-color);
+        }
+
+        .project-card h3 {
+            margin-top: 0;
+            font-size: 1.25rem;
+            color: var(--primary-color);
+        }
+
+        .project-card p {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+        }
+
+        /* Two-column layout for about section */
+        .about-grid {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .about-grid-item {
+            flex: 1;
+            text-align: left;
+        }
+
+        .about-grid-item:first-child {
+            text-align: center;
+        }
+
+        .profile-image-container {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background-color: #444c56;
+            margin: 0 auto 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            border: 3px solid var(--primary-color);
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .profile-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .profile-icon {
+            font-size: 150px;
+            color: #c9d1d9;
+        }
+
+        .theme-toggle-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            z-index: 11;
+            transition: color 0.5s ease;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .content-card {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+            .about-grid {
+                flex-direction: column;
+            }
+            .about-grid-item {
+                text-align: center;
+            }
+            .about-grid-item:first-child {
+                order: -1;
+            }
+        }

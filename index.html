@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarang K - 3D Portfolio</title>
+    <!-- Inter font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- This is where the Three.js canvas will be placed -->
+    <div id="three-container"></div>
+
+    <!-- The main scrollable content container -->
+    <div class="main-content">
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <a href="#about" class="nav-link" onclick="scrollToSection('about')">About</a>
+            <a href="#skills" class="nav-link" onclick="scrollToSection('skills')">Skills</a>
+            <a href="#projects" class="nav-link" onclick="scrollToSection('projects')">Projects</a>
+            <a href="#contact" class="nav-link" onclick="scrollToSection('contact')">Contact</a>
+        </nav>
+
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle" class="theme-toggle-btn">
+            <span id="theme-icon">🌙</span>
+        </button>
+
+        <!-- About Me Section -->
+        <section id="about" class="content-section">
+            <div class="content-card">
+                <div class="about-grid">
+                    <div class="about-grid-item">
+                        <div class="profile-image-container">
+                             <img src="https://placehold.co/250x250/58a6ff/c9d1d9?text=Icon" alt="A stylized developer avatar">
+                        </div>
+                    </div>
+                    <div class="about-grid-item" style="text-align: left;">
+                        <h1>Sarang K</h1>
+                        <h2>Fullstack Developer & UI/UX Designer</h2>
+                        <p style="font-style: italic;">"The best way to predict the future is to create it."</p>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/sarang-k-37073226b" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                            <a href="https://github.com/Sarangk2024" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Skills Section -->
+        <section id="skills" class="content-section">
+            <div class="content-card">
+                <h1>My Skills</h1>
+                <p>I am a passionate and driven 4th-year Computer Science student with a strong interest in full-stack development, UI/UX design, and Java programming. I'm dedicated to building beautiful and functional applications, combining my technical skills with a creative eye. My journey has equipped me with a robust understanding of various technologies, from web frameworks like React and Django to mobile development with Flutter.</p>
+                <h2 style="margin-top: 3rem;">Languages & Technologies I Know</h2>
+                <div class="skills-list">
+                    <div class="skill-item">
+                         <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="c" width="40" height="40"/>
+                    </div>
+                    <div class="skill-item">
+                         <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="cplusplus" width="40" height="40"/>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" alt="csharp" width="40" height="40"/>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" alt="css3" width="40" height="40"/>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/django/django-plain.svg" alt="django" width="40" height="40"/>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/dot-net/dot-net-original.svg" alt="dotnet" width="40" height="40"/>
+                    </div>
+                     <div class="skill-item">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original.svg" alt="express" width="40" height="40"/>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/flutter/flutter-original.svg" alt="flutter" width="40" height="40"/>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" alt="git" width="40" height="40"/>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" alt="html5" width="40" height="40"/>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" alt="mysql" width="40" height="40"/>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" alt="nodejs" width="40" height="40"/>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/php/php-original.svg" alt="php" width="40" height="40"/>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" alt="postgresql" width="40" height="40"/>
+                    </div>
+                    <div class="skill-item">
+                         <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/>
+                    </div>
+                    <div class="skill-item">
+                         <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="react" width="40" height="40"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="content-section">
+            <div class="content-card">
+                <h1>My Projects</h1>
+                <p>Here are some of the projects I've worked on. Feel free to explore my GitHub for more.</p>
+                <div class="project-grid">
+                    <!-- Project 1: Chat Application -->
+                    <div class="project-card">
+                        <img src="" alt="Project Image" class="project-card-image">
+                        <h3>A Chat Application</h3>
+                        <p>A real-time chat application using Firebase to store data. Built with HTML, CSS, and JavaScript.</p>
+                        <a href="https://github.com/Sarangk2024/Chat-Application" class="nav-link" target="_blank">View on GitHub</a>
+                    </div>
+                    <!-- Project 2: Social Media App -->
+                    <div class="project-card">
+                        <img src="" alt="Project Image" class="project-card-image">
+                        <h3>Social Media App</h3>
+                        <p>A social media app built using Flutter with Firebase as the backend.</p>
+                        <a href="https://github.com/Sarangk2024/Social-media-app" class="nav-link" target="_blank">View on GitHub</a>
+                    </div>
+                    <!-- Project 3: Spotify Clone -->
+                    <div class="project-card">
+                        <img src="" alt="Project Image" class="project-card-image">
+                        <h3>Spotify Clone</h3>
+                        <p>A music player that can play songs from a list, built with HTML and CSS.</p>
+                        <a href="https://github.com/Sarangk2024/spotify-clone" class="nav-link" target="_blank">View on GitHub</a>
+                    </div>
+                    <!-- Project 4: Text to Speech -->
+                    <div class="project-card">
+                        <img src="" alt="Project Image" class="project-card-image">
+                        <h3>Text to Speech</h3>
+                        <p>A Python application using Tkinter to convert text to an audio file.</p>
+                        <a href="https://github.com/Sarangk2024/Text-to-speech-in-python" class="nav-link" target="_blank">View on GitHub</a>
+                    </div>
+                     <!-- Project 5: Movie Recommendation App -->
+                    <div class="project-card">
+                        <img src="" alt="Project Image" class="project-card-image">
+                        <h3>Movie Recommendation App</h3>
+                        <p>An app that recommends movies, built using Python, HTML, CSS, JavaScript, and Flask.</p>
+                        <a href="https://github.com/Sarangk2024/Movie-recomandation-app" class="nav-link" target="_blank">View on GitHub</a>
+                    </div>
+                    <!-- Project 6: Smart Helmet -->
+                    <div class="project-card">
+                        <img src="" alt="Project Image" class="project-card-image">
+                        <h3>Smart Helmet</h3>
+                        <p>A smart helmet system developed to enhance rider safety. Details can be found on my old portfolio.</p>
+                        <a href="http://portfolioupdated20.netlify.app" class="nav-link" target="_blank">View Project</a>
+                    </div>
+                    <!-- Project 7: JavaScript Games -->
+                    <div class="project-card">
+                        <img src="" alt="Project Image" class="project-card-image">
+                        <h3>JavaScript Games</h3>
+                        <p>A collection of games including Simon and a Drum Kit, demonstrating JavaScript DOM manipulation.</p>
+                        <a href="https://github.com/Sarangk2024/Javascript-Games" class="nav-link" target="_blank">View on GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="content-section">
+            <div class="content-card">
+                <h1>Get in Touch</h1>
+                <p>Feel free to reach out to me for new opportunities and collaborations!</p>
+                <!-- This button is now a working link using the mailto: protocol -->
+                <a href="mailto:sarangsajeevan629@gmail.com" class="contact-btn">Get in Touch!</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="social-links" style="margin-bottom: 1rem;">
+                <a href="https://www.linkedin.com/in/sarang-k-37073226b" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/Sarangk2024" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="#" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+            </div>
+            <p style="margin: 0; font-size: 0.9rem;">
+                Located in Kottayodi, Kerala, India
+            </p>
+            &copy; 2024 Sarang K. All rights reserved.
+        </footer>
+    </div>
+
+    <!-- Three.js, OrbitControls, and GSAP libraries from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+    <script src="index.js"></script>
+
+</body>
+</html>
