@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors    = require('cors');
-const twilio  = require('twilio');
+// const twilio  = require('twilio');   // ❌ Disabled for now
 
 const app = express();
 
@@ -11,10 +11,13 @@ app.use(cors({
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type']
 }));
+
 app.use(express.json());
 
 // Health check
-app.get('/', (req, res) => res.json({ status: 'Sarang Portfolio Backend running' }));
+app.get('/', (req, res) => 
+    res.json({ status: 'Sarang Portfolio Backend running' })
+);
 
 app.post('/send-sms', async (req, res) => {
     const { name, email, message } = req.body;
@@ -31,19 +34,23 @@ app.post('/send-sms', async (req, res) => {
     const smsText = `New portfolio inquiry!\nFrom: ${name}\nEmail: ${email}\nMessage: ${message}`;
 
     try {
-        const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
-        const msg = await client.messages.create({
-            body: smsText,
-            to:   process.env.MY_PHONE,
-            from: process.env.TWILIO_PHONE
+        // ❌ SMS disabled — just log instead
+        console.log("Form submission received:");
+        console.log(smsText);
+
+        // Still return success so frontend behaves same
+        res.json({ 
+            success: true, 
+            message: 'Your message has been sent successfully!' 
         });
-        console.log('SMS sent:', msg.sid);
-        res.json({ success: true, message: 'Your message has been sent successfully!' });
+
     } catch (err) {
-        console.error('SMS error:', err.message);
-        res.status(500).json({ error: 'Failed to send message. Please try again.' });
+        console.error('Form error:', err.message);
+        res.status(500).json({ error: 'Failed to process message. Please try again.' });
     }
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Portfolio backend running on port ${PORT}`));
+app.listen(PORT, () => 
+    console.log(`Portfolio backend running on port ${PORT}`)
+);
