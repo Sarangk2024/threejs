@@ -41,9 +41,10 @@ app.post('/send-sms', async (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT ? Number(process.env.PORT) : 3000;
 
-// IMPORTANT: bind to 0.0.0.0 for Railway
-app.listen(PORT, '0.0.0.0', () => {
+// FORCE correct binding for Railway
+app.listen(PORT, "0.0.0.0", () => {
+    console.log("ENV PORT:", process.env.PORT);
     console.log(`Server running on port ${PORT}`);
 });
