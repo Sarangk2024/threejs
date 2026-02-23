@@ -261,14 +261,16 @@ function initContactForm() {
         btn.disabled = true; btnText.textContent = 'Sending...'; btnIcon.style.display = 'none'; btnLoading.style.display = 'inline';
 
         try {
-            const BACKEND = window.BACKEND_URL || 'https://portfolio-backend-production-sarang.up.railway.app';
-            const res  = await fetch(BACKEND + '/send-sms', {
+            const res  = await fetch('https://api.web3forms.com/submit', {
                 method: 'POST', headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, email, message })
+                body: JSON.stringify({
+                    access_key: '1360a426-058e-4c03-9906-5f2cf6e41de2', // Get your free key at web3forms.com
+                    name, email, message
+                })
             });
             const data = await res.json();
-            if (res.ok) { showStatus('Message sent! I will get back to you soon.', 'success'); form.reset(); }
-            else throw new Error(data.error || 'Failed');
+            if (data.success) { showStatus('Message sent! I will get back to you soon.', 'success'); form.reset(); }
+            else throw new Error(data.message || 'Failed');
         } catch(err) {
             showStatus((err.message || 'Something went wrong. Please try again!'), 'error');
         } finally {
@@ -314,5 +316,7 @@ window.addEventListener('load', () => {
     initChatbot();
     initContactForm();
     document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+    const yrEl = document.getElementById('footer-year');
+    if (yrEl) yrEl.textContent = new Date().getFullYear();
 });
             
