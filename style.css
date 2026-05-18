@@ -113,7 +113,7 @@ body {
     animation: pulse-anim 2s infinite;
 }
 
-.nav-links { display: flex; gap: 2.5rem; }
+.nav-links { display: flex; gap: 1.6rem; }
 .nav-link {
     font-size: 0.95rem; font-weight: 500; color: var(--text-muted);
     text-decoration: none; position: relative; padding: 4px 0;
@@ -344,6 +344,88 @@ body {
     text-decoration: none; margin-top: 0.5rem; transition: gap 0.3s ease;
 }
 .project-link:hover { gap: 12px; }
+.project-actions {
+    display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+    margin-top: 0.2rem;
+}
+.project-actions .project-link { margin-top: 0.3rem; }
+
+/* Education, Experience, Resume */
+.education-card,
+.resume-card {
+    max-width: 850px; position: relative; overflow: hidden;
+}
+.timeline-head {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 1.5rem; margin-bottom: 1.2rem;
+}
+.timeline-kicker {
+    display: inline-block; font-size: 0.76rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+.timeline-head h2,
+.resume-card h2 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem;
+    color: var(--text); margin: 0;
+}
+.timeline-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 34px; padding: 0.45rem 0.9rem; border-radius: 20px;
+    background: rgba(124,58,237,0.12); border: 1px solid var(--border);
+    color: var(--primary-light); font-size: 0.78rem; font-weight: 700;
+    text-align: center; white-space: nowrap;
+}
+.timeline-role {
+    color: var(--text); font-weight: 600; margin-bottom: 0.6rem;
+}
+.timeline-location {
+    display: flex; align-items: center; gap: 8px; color: var(--text-muted);
+}
+.timeline-location i { color: var(--accent); }
+.experience-list {
+    display: flex; flex-direction: column; gap: 1.4rem;
+    max-width: 950px; width: 100%; padding: 0 1rem;
+}
+.experience-card {
+    max-width: none; padding: 2rem; position: relative; overflow: hidden;
+}
+.experience-card::before,
+.education-card::before,
+.resume-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--accent), transparent);
+}
+.timeline-points {
+    list-style: none; display: flex; flex-direction: column; gap: 0.7rem;
+    margin: 1rem 0 1.2rem; padding: 0;
+}
+.timeline-points li {
+    position: relative; padding-left: 1.2rem; color: var(--text-muted);
+    font-size: 0.92rem; line-height: 1.65;
+}
+.timeline-points li::before {
+    content: ''; position: absolute; left: 0; top: 0.72em;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-light), var(--accent));
+    box-shadow: 0 0 10px var(--primary-glow);
+}
+.timeline-tech {
+    color: var(--accent); font-size: 0.86rem; font-weight: 600;
+}
+.resume-card {
+    text-align: center; display: flex; flex-direction: column;
+    align-items: center; gap: 1rem; position: relative; overflow: hidden;
+}
+.resume-icon {
+    width: 70px; height: 70px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(34,211,238,0.12));
+    border: 1px solid var(--border); color: var(--accent); font-size: 1.8rem;
+    box-shadow: 0 0 30px var(--primary-glow);
+}
+.resume-card p { max-width: 520px; }
+.resume-download { margin-top: 0.7rem; align-self: center; text-decoration: none; }
 
 /* Contact */
 .contact-card { max-width: 750px; }
@@ -492,6 +574,8 @@ p { font-size: 0.95rem; line-height: 1.7; color: var(--text-muted); margin: 0; }
     .about-text-col { text-align: center; }
     .hero-tag, .social-links, .hero-stats, .hero-role { justify-content: center; }
     .content-card { padding: 2rem; }
+    .timeline-head { flex-direction: column; align-items: flex-start; }
+    .timeline-badge { white-space: normal; }
     .form-row { grid-template-columns: 1fr; }
     .footer-top { flex-direction: column; text-align: center; }
     .footer-bottom { flex-direction: column; text-align: center; }

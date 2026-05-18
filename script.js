@@ -92,7 +92,7 @@ function initCursor() {
         ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
         requestAnimationFrame(trackRing);
     })();
-    document.querySelectorAll('a, button, .project-card, .skill-item, input, textarea').forEach(el => {
+    document.querySelectorAll('a, button, .project-card, .skill-item, .experience-card, .education-card, .resume-card, input, textarea').forEach(el => {
         el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
         el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
     });
@@ -208,7 +208,7 @@ function initCounters() {
 
 // ===== TYPED TEXT =====
 function initTyped() {
-    const roles = ['Fullstack Developer', 'UI/UX Designer', 'AI Enthusiast', 'Problem Solver'];
+    const roles = ['Software Developer', 'Full Stack Developer'];
     const el = document.getElementById('typedText');
     if (!el) return;
     let ri = 0, ci = 0, del = false;
