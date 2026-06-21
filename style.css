@@ -589,3 +589,46 @@ p { font-size: 0.95rem; line-height: 1.7; color: var(--text-muted); margin: 0; }
     .stat-divider { display: none; }
     .chatbot-fab { bottom: 1.5rem; right: 1.5rem; width: 54px; height: 54px; }
 }
+
+
+
+
+
+
+.skill-groups {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin-top: 1rem;
+}
+
+.skill-group {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.4rem;
+    transition: 0.3s ease;
+}
+
+.skill-group:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 10px 30px var(--primary-glow);
+}
+
+.skill-group h3 {
+    margin: 0 0 1rem;
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+}
+
+.skill-group .skills-list {
+    gap: 0.8rem;
+    margin-top: 0;
+}
+
+@media (max-width: 700px) {
+    .skill-groups {
+        grid-template-columns: 1fr;
+    }
+}
