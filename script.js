@@ -245,7 +245,7 @@ function initCursor() {
         requestAnimationFrame(trackRing);
     })();
 
-    document.querySelectorAll('a, button, .project-card, .skill-item, .experience-card, .education-card, .contact-split-card, input, textarea, .chat-bubble, #chatSendBtn').forEach(el => {
+    document.querySelectorAll('a, button, .project-schematic-item, .skill-item-hud, .node-content, input, textarea, .chat-bubble, #chatSendBtn').forEach(el => {
         el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
         el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
     });
@@ -376,8 +376,8 @@ function initScrollAnimations() {
         });
     });
 
-    // Stagger projects cards with simple fade-up
-    gsap.utils.toArray('.project-card').forEach((card) => {
+    // Stagger projects schematic items with simple fade-up
+    gsap.utils.toArray('.project-schematic-item').forEach((card) => {
         gsap.fromTo(card,
             { y: 30, opacity: 0 },
             { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out',
@@ -387,11 +387,11 @@ function initScrollAnimations() {
     });
 
     // Skills stagger bounce
-    gsap.utils.toArray('.skill-item').forEach((el, i) => {
+    gsap.utils.toArray('.skill-item-hud').forEach((el, i) => {
         gsap.fromTo(el,
             { y: 20, opacity: 0, scale: 0.95 },
             { y: 0, opacity: 1, scale: 1, duration: 0.4, delay: i * 0.03, ease: 'power2.out',
-              scrollTrigger: { trigger: '.skill-groups', start: 'top 85%', toggleActions: 'play none none none' }
+              scrollTrigger: { trigger: '.skills-hud', start: 'top 85%', toggleActions: 'play none none none' }
             }
         );
     });
@@ -406,7 +406,7 @@ function initScrollAnimations() {
 // ===== TILT HUD CARDS EFFECT =====
 function initTilt() {
     if (window.matchMedia('(hover: none)').matches) return;
-    const cards = document.querySelectorAll('.content-card, .project-card');
+    const cards = document.querySelectorAll('.hud-container, .project-schematic-item, .node-content');
     cards.forEach(card => {
         card.addEventListener('mousemove', e => {
             const rect = card.getBoundingClientRect();
@@ -607,236 +607,6 @@ function initChatbot() {
     });
 }
 
-// ===== INTERACTIVE PROJECT DETAILS DATASET =====
-const PROJECT_METADATA = {
-    docpilot: {
-        title: "DocPilot AI",
-        tagline: "Intelligent GitHub Repository documentation Engine",
-        emoji: "🚀",
-        tags: ["AI", "FastAPI", "React", "GitHub API"],
-        desc: "DocPilot AI is an advanced developer tool designed to map and document complex GitHub repositories in seconds. By tracing functions, reading file trees, and identifying key REST API endpoints, it generates interactive visual code graphs and maintains an embedded chatbot to answer codebase Q&A factually.",
-        features: [
-            "Scrapes public/private repositories using GitHub APIs and parses project directory layouts.",
-            "Constructs hierarchical interactive dependency graphs to trace codebase call flows.",
-            "Extracts class schemas, function models, and REST endpoints for structured specifications.",
-            "Features a local vector-stuffed chatbot using Google Gemini for context-aware codebase Q&A."
-        ],
-        live: "https://repo-documentation.vercel.app/",
-        github: "https://github.com/Sarangk2024/RepoDocumentation"
-    },
-    zecpath: {
-        title: "Zecpath AI",
-        tagline: "Automated AI-Powered Recruitment Screening Platform",
-        emoji: "🤖",
-        tags: ["AI", "Python", "Recruitment Analysis"],
-        desc: "Zecpath AI simplifies the recruiting pipeline by utilizing NLP to parse, evaluate, and rank candidate resumes. It extracts applicant skill indices, scores profiles against complex job criteria, and highlights the best fits for specific hiring workflows.",
-        features: [
-            "Parses PDF and Docx resumes using Python text extraction pipelines.",
-            "Uses spaCy and custom NLP libraries to extract named entities (skills, experience, education).",
-            "Calculates semantic similarity scores between candidate profiles and job requirements.",
-            "Generates recruitment charts and visual screening indicators for HR teams."
-        ],
-        live: "#",
-        github: "https://github.com/Sarangk2024"
-    },
-    counterfeit: {
-        title: "Fake Product Detection",
-        tagline: "Decentralized Product Authentication using NFC and Blockchain",
-        emoji: "🔗",
-        tags: ["Blockchain", "NFC Tags", "Node.js"],
-        desc: "A secure counterfeit product identification system combining decentralized ledgers with physical hardware tags. Products are registered as unique assets on-chain, and consumers scan the embedded NFC tag to verify the product's origin and transaction history.",
-        features: [
-            "Registers and mints product authenticity signatures on a decentralized smart contract.",
-            "Verifies product tags instantly in the browser using NFC card read/write APIs.",
-            "Tracks the complete chain of custody from manufacturer to final buyer.",
-            "Prevents duplicate tag spoofing using unique cryptographically signed payload sequences."
-        ],
-        live: "https://supply-chain-1-0rut.onrender.com/",
-        github: "https://github.com/Sarangk2024/fake-product-backend"
-    },
-    agridetect: {
-        title: "AgriDetect AI",
-        tagline: "Deep Learning Web App for Crop Leaf Disease Identification",
-        emoji: "🌿",
-        tags: ["Deep Learning", "Web App", "Agriculture"],
-        desc: "AgriDetect AI assists farmers by diagnosing plant health issues directly from photos. Utilizing deep convolutional neural networks, it identifies diseases on leaf surfaces and instantly serves guidance on corrective organic treatments.",
-        features: [
-            "Analyzes leaf photographs using TensorFlow classification models.",
-            "Classifies plant diseases (e.g., blight, rust, leaf spots) with high validation accuracy.",
-            "Suggests immediate corrective solutions, bio-pesticides, and watering advice.",
-            "Features a responsive mobile-friendly interface designed for low-bandwidth farming areas."
-        ],
-        live: "https://agridetectai.vercel.app/",
-        github: "https://github.com/Sarangk2024/AgriDetect-AI"
-    },
-    chatapp: {
-        title: "Chat Application",
-        tagline: "Real-Time Socket-Based Channels Messaging Console",
-        emoji: "💬",
-        tags: ["Firebase", "JavaScript", "Sockets"],
-        desc: "A responsive, instant chat messaging application supporting channel divisions and private communication. Built with socket connections, it provides real-time text delivery and user activity indicators.",
-        features: [
-            "Manages message transmission and channel updates.",
-            "Saves history and authenticates users securely utilizing Firebase.",
-            "Displays real-time typing indicators and user online/offline statuses.",
-            "Supports text styling and responsive layout scaling across platforms."
-        ],
-        live: "https://huggingface.co/spaces/kuttu-2003/mygenapi",
-        github: "https://huggingface.co/spaces/kuttu-2003/mygenapi/tree/main"
-    },
-    travel: {
-        title: "Dubai Trip Assistant",
-        tagline: "Generative Travel Route & Itinerary Planner",
-        emoji: "✈️",
-        tags: ["Generative AI", "APIs", "Chatbot"],
-        desc: "An AI-powered travel planning assistant that processes tourist budgets, duration of stay, and activity preferences to compile customized Dubai itineraries, complete with maps and booking aids.",
-        features: [
-            "Parses travel criteria to generate structured, day-by-day itineraries.",
-            "Recommends local attractions, restaurants, and hotels matching budget tiers.",
-            "Integrated with map coordinates and transit guidelines.",
-            "Provides travel advice regarding cultural details and local guidelines."
-        ],
-        live: "#",
-        github: "https://github.com/Sarangk2024/chatbot"
-    },
-    spotify: {
-        title: "Spotify Clone",
-        tagline: "Responsive Web Player Frontend Replica",
-        emoji: "🎵",
-        tags: ["HTML5", "CSS3", "JS"],
-        desc: "A frontend clone of the Spotify web player user interface. Recreated using semantic HTML5 and clean CSS layouts, it features play panels, hover-tilt album covers, and responsive sidebar navigation.",
-        features: [
-            "Recreates Spotify's desktop design with responsive flex and grids.",
-            "Implements custom hover effects and micro-animations for player controls.",
-            "Features interactive album grid tiles and smooth navigation tabs.",
-            "Lightweight code using vanilla styling utilities without frameworks."
-        ],
-        live: "#",
-        github: "https://github.com/Sarangk2024/spotify-clone"
-    },
-    objectdet: {
-        title: "Object Detection",
-        tagline: "Real-Time Webcam Object Classification in Browser",
-        emoji: "📸",
-        tags: ["TensorFlow.js", "Webcam API", "ML"],
-        desc: "A browser-based machine learning application that utilizes the computer's webcam to detect and classify everyday objects in real-time. Powered by TensorFlow.js and the pre-trained COCO-SSD object detection model.",
-        features: [
-            "Loads and runs the COCO-SSD model directly client-side in the browser.",
-            "Streams video frames from the Webcam API to perform classification loops.",
-            "Draws bounding boxes and labels around detected items (e.g., cell phone, bottle, person).",
-            "Maintains 30+ frames per second (FPS) execution on modern computer hardware."
-        ],
-        live: "#",
-        github: "https://github.com/Sarangk2024/Object-detection-"
-    },
-    healthcare: {
-        title: "Healthcare Appointment",
-        tagline: "Java OOP Medical Scheduling & Database Console",
-        emoji: "🏥",
-        tags: ["Java", "OOP", "Database"],
-        desc: "A structured software management console written in Java applying object-oriented design principles. Built to manage doctor schedules, book patient slots, and maintain medical history records.",
-        features: [
-            "Encapsulates patient, doctor, and booking slots inside structured Java classes.",
-            "Implements search and filter queries for doctor specializations.",
-            "Maintains local database operations for tracking medical histories.",
-            "Includes input validation and console security checks."
-        ],
-        live: "#",
-        github: "https://github.com/Sarangk2024/Heath-care-Appointment-"
-    },
-    helmet: {
-        title: "Smart Helmet",
-        tagline: "IoT Accidental Detection & Safety Alerts System",
-        emoji: "🪖",
-        tags: ["IoT", "GPS", "Safety"],
-        desc: "An IoT hardware prototype utilizing accident detection sensors to improve rider safety. In the event of an impact, it accesses the GPS module to transmit coordinates to emergency numbers via SMS.",
-        features: [
-            "Detects sudden head impacts utilizing accelerometer and gyroscope modules.",
-            "Fetches precise coordinates from the GPS module on emergency triggers.",
-            "Transmits automated safety SMS alerts to preset numbers.",
-            "Coordinates with an external mobile application for hardware testing."
-        ],
-        live: "#",
-        github: "https://github.com/Sarangk2024/smart-helmet"
-    },
-    games: {
-        title: "JavaScript Games",
-        tagline: "Dynamic DOM Sequence Memory & Virtual Instruments",
-        emoji: "🎮",
-        tags: ["JavaScript", "DOM", "Events"],
-        desc: "A dynamic showcase of browser-based games and instruments including a Simon Says sequence memory game and a key-triggered virtual Drum Kit, demonstrating JavaScript event listeners and audio styling.",
-        features: [
-            "Tracks user click sequences to evaluate Simon Says memory patterns.",
-            "Triggers sound samples and visual key flashes dynamically in a Drum Kit layout.",
-            "Utilizes audio web APIs and CSS transform animations.",
-            "Completely written in vanilla JavaScript without heavy external libraries."
-        ],
-        live: "#",
-        github: "https://github.com/Sarangk2024/tic-tac-toe-game"
-    }
-};
-
-function initProjectModal() {
-    const modal = document.getElementById('projectModal');
-    const closeBtn = document.getElementById('projectModalClose');
-    const backdrop = document.getElementById('projectModalBackdrop');
-    const body = document.getElementById('projectModalBody');
-    const cards = document.querySelectorAll('.project-card');
-
-    if (!modal || !closeBtn || !body) return;
-
-    function openModal(projectKey) {
-        const data = PROJECT_METADATA[projectKey];
-        if (!data) return;
-
-        // Build features list
-        const featuresHtml = data.features.map(f => `<li>${f}</li>`).join('');
-        // Build tags badges
-        const tagsHtml = data.tags.map(t => `<span class="tag">${t}</span>`).join('');
-        // Build action links
-        let actionsHtml = '';
-        if (data.github && data.github !== '#') {
-            actionsHtml += `<a href="${data.github}" class="social-btn" target="_blank"><i class="fab fa-github"></i> Repository Code</a>`;
-        }
-        if (data.live && data.live !== '#') {
-            actionsHtml += `<a href="${data.live}" class="submit-btn" target="_blank" style="margin-top:0; padding: 0.6rem 1.2rem; font-size: 0.8rem;"><i class="fas fa-external-link-alt"></i> Live Demo</a>`;
-        }
-
-        body.innerHTML = `
-            <h2><span>${data.emoji}</span> ${data.title}</h2>
-            <div class="modal-tagline">${data.tagline}</div>
-            <div class="modal-tags">${tagsHtml}</div>
-            <div class="modal-desc">${data.desc}</div>
-            <h4>Key Features & Architecture</h4>
-            <ul class="modal-features">${featuresHtml}</ul>
-            <div class="modal-actions">${actionsHtml}</div>
-        `;
-
-        modal.classList.add('open');
-        document.body.style.overflow = 'hidden'; // Lock main scroll
-    }
-
-    function closeModal() {
-        modal.classList.remove('open');
-        document.body.style.overflow = 'auto'; // Restore scroll
-    }
-
-    cards.forEach(card => {
-        card.addEventListener('click', () => {
-            const pKey = card.getAttribute('data-project');
-            if (pKey) openModal(pKey);
-        });
-    });
-
-    closeBtn.addEventListener('click', closeModal);
-    backdrop.addEventListener('click', closeModal);
-
-    // ESC key close support
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
-    });
-}
-
 // ===== CONTACT FORM =====
 function initContactForm() {
     const form   = document.getElementById('contactForm');
@@ -897,7 +667,6 @@ window.addEventListener('load', () => {
     initChatbot();
     initContactForm();
     initTilt();
-    initProjectModal();
     const yrEl = document.getElementById('footer-year');
     if (yrEl) yrEl.textContent = new Date().getFullYear();
 });
