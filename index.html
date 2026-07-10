@@ -26,7 +26,7 @@
         <div class="nav-links">
             <a href="#about" class="nav-link" onclick="scrollToSection('about'); return false;">ABOUT</a>
             <a href="#skills" class="nav-link" onclick="scrollToSection('skills'); return false;">SKILLS</a>
-            <a href="#timeline" class="nav-link" onclick="scrollToSection('timeline'); return false;">TIMELINE</a>
+            <a href="#timeline" class="nav-link" onclick="scrollToSection('timeline'); return false;">JOURNEY</a>
             <a href="#projects" class="nav-link" onclick="scrollToSection('projects'); return false;">PROJECTS</a>
             <a href="#contact" class="nav-link" onclick="scrollToSection('contact'); return false;">CONTACT</a>
         </div>
@@ -71,7 +71,7 @@
                 <div class="hud-column right-hud">
                     <div class="hero-stats reveal-up">
                         <div class="stat-item">
-                            <span class="stat-number" data-count="9">0</span><span class="stat-plus">+</span>
+                            <span class="stat-number" data-count="11">0</span><span class="stat-plus">+</span>
                             <span class="stat-label">Projects</span>
                         </div>
                         <div class="stat-divider-horizontal"></div>
@@ -153,10 +153,10 @@
             </div>
         </section>
 
-        <!-- TIMELINE SECTION (COMBINED) -->
+        <!-- TIMELINE SECTION (EXPERIENCE & EDUCATION MIXED) -->
         <section id="timeline" class="content-section">
             <div class="section-header">
-                <span class="section-tag reveal-up">Timeline</span>
+                <span class="section-tag reveal-up">Journey</span>
                 <h1 class="section-title reveal-up">Experience & Education</h1>
             </div>
             
@@ -167,8 +167,9 @@
                 <div class="timeline-node reveal-up">
                     <div class="node-dot"></div>
                     <div class="node-content">
-                        <span class="node-date">May 2026 - Present | Zecser Business LLP</span>
+                        <span class="node-date">May 2026 - Present | Remote</span>
                         <h3>AI Developer Intern</h3>
+                        <p class="timeline-sub">Zecser Business LLP</p>
                         <p>Building NLP-based document processing pipelines using Python and spaCy. Developing AI-integrated backend modules for internal tools. Collaborating on modular system architecture with REST API endpoints.</p>
                         <span class="node-tags">Python // NLP // AWS // Git // REST APIs</span>
                     </div>
@@ -178,8 +179,9 @@
                 <div class="timeline-node reveal-up">
                     <div class="node-dot"></div>
                     <div class="node-content">
-                        <span class="node-date">Dec 2025 - Mar 2026 | Infosys Springboard</span>
+                        <span class="node-date">Dec 2025 - Mar 2026 | Remote</span>
                         <h3>AI Intern</h3>
+                        <p class="timeline-sub">Infosys Springboard</p>
                         <p>Completed structured AI/ML training covering supervised learning, model evaluation, and NLP fundamentals. Built and evaluated classification models using Python and scikit-learn.</p>
                         <span class="node-tags">Python // Machine Learning // scikit-learn</span>
                     </div>
@@ -189,8 +191,9 @@
                 <div class="timeline-node reveal-up">
                     <div class="node-dot"></div>
                     <div class="node-content">
-                        <span class="node-date">Jun 2025 - Oct 2025 | Grohub</span>
+                        <span class="node-date">Jun 2025 - Oct 2025 | Remote</span>
                         <h3>Web Developer Intern</h3>
+                        <p class="timeline-sub">Grohub</p>
                         <p>Developed and maintained responsive web pages using HTML, CSS, JavaScript, and modern web technologies. Optimized website performance, responsiveness, and cross-browser compatibility.</p>
                         <span class="node-tags">HTML5 // CSS3 // JavaScript // UI/UX</span>
                     </div>
@@ -200,19 +203,21 @@
                 <div class="timeline-node reveal-up">
                     <div class="node-dot"></div>
                     <div class="node-content">
-                        <span class="node-date">Jun 2025 | Eqsoft Business Solutions</span>
+                        <span class="node-date">Jun 2025 | On-site - Thrissur</span>
                         <h3>Web Developer Intern</h3>
+                        <p class="timeline-sub">Eqsoft Business Solutions</p>
                         <p>Developed and maintained responsive web and mobile application modules using ASP.NET and Flutter. Integrated REST APIs and debugged cross-platform compatibility issues.</p>
                         <span class="node-tags">ASP.NET // Flutter // SQL // REST APIs</span>
                     </div>
                 </div>
 
-                <!-- Node 5 -->
+                <!-- Node 5 (Education) -->
                 <div class="timeline-node reveal-up">
                     <div class="node-dot red-dot"></div>
                     <div class="node-content">
-                        <span class="node-date">2022 - 2026 | College Of Engineering Thalassery</span>
+                        <span class="node-date">2022 - 2026 Batch | Thalassery</span>
                         <h3>B.Tech - Computer Science & Engineering</h3>
+                        <p class="timeline-sub">College Of Engineering Thalassery</p>
                         <p>Acquired robust understanding of core concepts in software engineering, OOP, algorithms, and modular stack development. Grade: 8.88 CGPA.</p>
                         <span class="node-tags">B.Tech // CSE // Thalassery // 8.88 CGPA</span>
                     </div>
@@ -225,30 +230,26 @@
             <div class="section-header">
                 <span class="section-tag reveal-up">What I've Built</span>
                 <h1 class="section-title reveal-up">My Projects</h1>
-                <p class="section-subtitle reveal-up">A curated selection of my work. Floating directly on the grid matrix.</p>
+                <p class="section-subtitle reveal-up">All 11 original projects arranged 3 in a row. Click a card to read full documentation.</p>
             </div>
             
             <div class="projects-schematic-grid">
                 <!-- Project 1 -->
-                <div class="project-schematic-item reveal-up">
+                <div class="project-schematic-item reveal-up" data-project="docpilot">
                     <div class="project-card-top">
                         <span class="project-emoji">&#128640;</span>
                         <div class="project-tags">
                             <span class="tag">AI</span>
                             <span class="tag">FastAPI</span>
-                            <span class="tag">React</span>
                         </div>
                     </div>
                     <h3>DocPilot AI</h3>
-                    <p>Transforming GitHub repositories into structured documentation, interactive code graphs, and API insights to help developers understand codebases faster.</p>
-                    <div class="project-actions">
-                        <a href="https://repo-documentation.vercel.app/" class="project-link" target="_blank">Live Demo <i class="fas fa-arrow-right"></i></a>
-                        <a href="https://github.com/Sarangk2024/RepoDocumentation" class="project-link" target="_blank">GitHub <i class="fab fa-github"></i></a>
-                    </div>
+                    <p>Transforming GitHub repositories into structured documentation and interactive code graphs.</p>
+                    <span class="project-click-hint">Read Details <i class="fas fa-arrow-right"></i></span>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="project-schematic-item reveal-up">
+                <div class="project-schematic-item reveal-up" data-project="zecpath">
                     <div class="project-card-top">
                         <span class="project-emoji">&#129302;</span>
                         <div class="project-tags">
@@ -257,14 +258,12 @@
                         </div>
                     </div>
                     <h3>Zecpath AI</h3>
-                    <p>An automated recruitment platform using AI to analyze resumes, match candidates with job criteria, and streamline screening workflows.</p>
-                    <div class="project-actions">
-                        <a href="https://github.com/Sarangk2024" class="project-link" target="_blank">Ongoing <i class="fas fa-arrow-right"></i></a>
-                    </div>
+                    <p>An automated recruitment platform using AI to parse and screen candidate resumes.</p>
+                    <span class="project-click-hint">Read Details <i class="fas fa-arrow-right"></i></span>
                 </div>
 
                 <!-- Project 3 -->
-                <div class="project-schematic-item reveal-up">
+                <div class="project-schematic-item reveal-up" data-project="counterfeit">
                     <div class="project-card-top">
                         <span class="project-emoji">&#128279;</span>
                         <div class="project-tags">
@@ -273,65 +272,125 @@
                         </div>
                     </div>
                     <h3>Fake Product Detection</h3>
-                    <p>Blockchain-based counterfeit detection using NFC. Products are registered on-chain and verified in real-time via NFC scan.</p>
-                    <div class="project-actions">
-                        <a href="https://supply-chain-1-0rut.onrender.com/" class="project-link" target="_blank">Live <i class="fas fa-arrow-right"></i></a>
-                        <a href="https://github.com/Sarangk2024/fake-product-backend" class="project-link" target="_blank">GitHub <i class="fab fa-github"></i></a>
-                    </div>
+                    <p>Decentralized counterfeit detection system using NFC tags and blockchain ledgers.</p>
+                    <span class="project-click-hint">Read Details <i class="fas fa-arrow-right"></i></span>
                 </div>
 
                 <!-- Project 4 -->
-                <div class="project-schematic-item reveal-up">
+                <div class="project-schematic-item reveal-up" data-project="agridetect">
                     <div class="project-card-top">
                         <span class="project-emoji">&#127807;</span>
                         <div class="project-tags">
-                            <span class="tag">AI/ML</span>
-                            <span class="tag">Web App</span>
+                            <span class="tag">Deep Learning</span>
+                            <span class="tag">Web</span>
                         </div>
                     </div>
                     <h3>AgriDetect AI</h3>
-                    <p>Deep learning app that identifies plant leaf diseases from images, offering farmers immediate corrective treatments.</p>
-                    <div class="project-actions">
-                        <a href="https://agridetectai.vercel.app/" class="project-link" target="_blank">Live <i class="fas fa-arrow-right"></i></a>
-                        <a href="https://github.com/Sarangk2024/AgriDetect-AI" class="project-link" target="_blank">GitHub <i class="fab fa-github"></i></a>
-                    </div>
+                    <p>Leaf image classifier that identifies crop diseases and suggests organic treatment.</p>
+                    <span class="project-click-hint">Read Details <i class="fas fa-arrow-right"></i></span>
                 </div>
 
                 <!-- Project 5 -->
-                <div class="project-schematic-item reveal-up">
+                <div class="project-schematic-item reveal-up" data-project="chatapp">
                     <div class="project-card-top">
                         <span class="project-emoji">&#128172;</span>
                         <div class="project-tags">
                             <span class="tag">Firebase</span>
-                            <span class="tag">JS</span>
+                            <span class="tag">Sockets</span>
                         </div>
                     </div>
                     <h3>Chat Application</h3>
-                    <p>Real-time chat platform with instant messaging and authentication, utilizing Firebase as a serverless database.</p>
-                    <div class="project-actions">
-                        <a href="https://huggingface.co/spaces/kuttu-2003/mygenapi" class="project-link" target="_blank">Live <i class="fas fa-arrow-right"></i></a>
-                    </div>
+                    <p>Real-time messaging platform with secure user authentication and instant socket delivery.</p>
+                    <span class="project-click-hint">Read Details <i class="fas fa-arrow-right"></i></span>
                 </div>
 
                 <!-- Project 6 -->
-                <div class="project-schematic-item reveal-up">
+                <div class="project-schematic-item reveal-up" data-project="travel">
                     <div class="project-card-top">
                         <span class="project-emoji">&#9992;</span>
                         <div class="project-tags">
-                            <span class="tag">AI</span>
-                            <span class="tag">Chatbot</span>
+                            <span class="tag">Generative AI</span>
+                            <span class="tag">API</span>
                         </div>
                     </div>
                     <h3>Dubai Trip Assistant</h3>
-                    <p>Generative AI travel assistant that provides travel tips, bookings help, and customized itineraries for tourists.</p>
-                    <div class="project-actions">
-                        <a href="https://github.com/Sarangk2024/chatbot" class="project-link" target="_blank">GitHub <i class="fas fa-arrow-right"></i></a>
+                    <p>AI travel assistant that curates customized Dubai itineraries for visitors.</p>
+                    <span class="project-click-hint">Read Details <i class="fas fa-arrow-right"></i></span>
+                </div>
+
+                <!-- Project 7 -->
+                <div class="project-schematic-item reveal-up" data-project="spotify">
+                    <div class="project-card-top">
+                        <span class="project-emoji">&#127911;</span>
+                        <div class="project-tags">
+                            <span class="tag">HTML5</span>
+                            <span class="tag">CSS3</span>
+                        </div>
                     </div>
+                    <h3>Spotify Clone</h3>
+                    <p>A frontend clone of the Spotify web player UI built with responsive CSS grids.</p>
+                    <span class="project-click-hint">Read Details <i class="fas fa-arrow-right"></i></span>
+                </div>
+
+                <!-- Project 8 -->
+                <div class="project-schematic-item reveal-up" data-project="objectdet">
+                    <div class="project-card-top">
+                        <span class="project-emoji">&#128247;</span>
+                        <div class="project-tags">
+                            <span class="tag">TensorFlow</span>
+                            <span class="tag">JS</span>
+                        </div>
+                    </div>
+                    <h3>Object Detection</h3>
+                    <p>Real-time browser classification drawing boxes around webcam objects.</p>
+                    <span class="project-click-hint">Read Details <i class="fas fa-arrow-right"></i></span>
+                </div>
+
+                <!-- Project 9 -->
+                <div class="project-schematic-item reveal-up" data-project="healthcare">
+                    <div class="project-card-top">
+                        <span class="project-emoji">&#127973;</span>
+                        <div class="project-tags">
+                            <span class="tag">Java</span>
+                            <span class="tag">OOP</span>
+                        </div>
+                    </div>
+                    <h3>Healthcare Appointment</h3>
+                    <p>Medical management database mapping doctors, scheduling slots, and patient records.</p>
+                    <span class="project-click-hint">Read Details <i class="fas fa-arrow-right"></i></span>
+                </div>
+
+                <!-- Project 10 -->
+                <div class="project-schematic-item reveal-up" data-project="helmet">
+                    <div class="project-card-top">
+                        <span class="project-emoji">&#9937;</span>
+                        <div class="project-tags">
+                            <span class="tag">IoT</span>
+                            <span class="tag">GPS</span>
+                        </div>
+                    </div>
+                    <h3>Smart Helmet</h3>
+                    <p>GPS impact detector prototype sending location coordinates during riding accidents.</p>
+                    <span class="project-click-hint">Read Details <i class="fas fa-arrow-right"></i></span>
+                </div>
+
+                <!-- Project 11 -->
+                <div class="project-schematic-item reveal-up" data-project="games">
+                    <div class="project-card-top">
+                        <span class="project-emoji">&#127918;</span>
+                        <div class="project-tags">
+                            <span class="tag">DOM</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                    </div>
+                    <h3>JavaScript Games</h3>
+                    <p>A collection of responsive interactive games including Simon Says and virtual Drum Kit.</p>
+                    <span class="project-click-hint">Read Details <i class="fas fa-arrow-right"></i></span>
                 </div>
             </div>
         </section>
 
-        <!-- CONTACT & RESUME SECTION -->
+        <!-- CONTACT SECTION -->
         <section id="contact" class="content-section">
             <div class="section-header">
                 <span class="section-tag reveal-up">Say Hello</span>
@@ -443,6 +502,29 @@
         </div>
     </div>
     <div class="chatbot-backdrop" id="chatbotBackdrop"></div>
+
+    <!-- Project Documentation Modal -->
+    <div class="project-modal" id="projectModal">
+        <div class="project-modal-backdrop" id="projectModalBackdrop"></div>
+        <div class="project-modal-content">
+            <!-- Grid Lines and Corner Anchors -->
+            <div class="grid-line-horizontal" style="top: 0;"></div>
+            <div class="grid-line-horizontal" style="bottom: 0;"></div>
+            <div class="grid-line-vertical" style="left: 0;"></div>
+            <div class="grid-line-vertical" style="right: 0;"></div>
+            <span class="corner-anchor top-left">+</span>
+            <span class="corner-anchor top-right">+</span>
+            <span class="corner-anchor bottom-left">+</span>
+            <span class="corner-anchor bottom-right">+</span>
+
+            <button class="project-modal-close" id="projectModalClose" aria-label="Close modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="project-modal-body" id="projectModalBody">
+                <!-- Dynamically populated by JavaScript -->
+            </div>
+        </div>
+    </div>
 
     <!-- JavaScript Dependencies -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
