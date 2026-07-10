@@ -860,7 +860,10 @@ function initContactForm() {
             if (N8N_WEBHOOK_URL) {
                 const res = await fetch(N8N_WEBHOOK_URL, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Bypass-Tunnel-Reminder': 'true'
+                    },
                     body: JSON.stringify({ name, email, message })
                 });
                 if (res.ok) {
