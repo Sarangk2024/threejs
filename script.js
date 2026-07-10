@@ -835,6 +835,10 @@ function initProjectModal() {
 
 // ===== CONTACT FORM =====
 function initContactForm() {
+    // Set to your public n8n Webhook URL (e.g., via Ngrok tunnel: "https://your-tunnel.ngrok-free.app/webhook/contact")
+    // If left empty, it falls back to Web3Forms automatically.
+    const N8N_WEBHOOK_URL = "";
+
     const form   = document.getElementById('contactForm');
     const status = document.getElementById('formStatus');
     const btn    = document.getElementById('submitBtn');
@@ -853,16 +857,30 @@ function initContactForm() {
         btn.disabled = true; btnText.textContent = 'Sending...'; btnIcon.style.display = 'none'; btnLoading.style.display = 'inline';
 
         try {
-            const res  = await fetch('https://api.web3forms.com/submit', {
-                method: 'POST', headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    access_key: '1360a426-058e-4c03-9906-5f2cf6e41de2',
-                    name, email, message
-                })
-            });
-            const data = await res.json();
-            if (data.success) { showStatus('Message sent! I will get back to you soon.', 'success'); form.reset(); }
-            else throw new Error(data.message || 'Failed');
+            if (N8N_WEBHOOK_URL) {
+                const res = await fetch(N8N_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, message })
+                });
+                if (res.ok) {
+                    showStatus('Message sent to n8n workflow successfully!', 'success');
+                    form.reset();
+                } else {
+                    throw new Error('Failed to send message to n8n webhook.');
+                }
+            } else {
+                const res  = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        access_key: '1360a426-058e-4c03-9906-5f2cf6e41de2',
+                        name, email, message
+                    })
+                });
+                const data = await res.json();
+                if (data.success) { showStatus('Message sent! I will get back to you soon.', 'success'); form.reset(); }
+                else throw new Error(data.message || 'Failed');
+            }
         } catch(err) {
             showStatus((err.message || 'Something went wrong. Please try again!'), 'error');
         } finally {

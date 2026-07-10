@@ -163,7 +163,7 @@ body::before {
     background: var(--accent);
     transition: all 0.3s ease; transform: translateX(-50%);
 }
-.nav-link:hover { color: var(--text); }
+.nav-link:hover { color: var(--accent); }
 .nav-link:hover::after { width: 10px; }
 
 /* Main Content Layer */
