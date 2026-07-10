@@ -1,6 +1,6 @@
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-// ===== THREE.JS — Morphing Particle Grid =====
+// ===== THREE.JS — Morphing Particle Grid & Parallax Camera =====
 let scene, camera, renderer, particleGeometry, particleSystem;
 let activeShapeIndex = 0;
 let scrollFraction = 0;
@@ -8,7 +8,7 @@ let mouseX = 0, mouseY = 0;
 
 // Coordinate sets
 let targetShapes = [];
-const N = 4000; // Number of particles
+const N = 4500; // Number of particles
 
 function generateSphere(numPoints, radius = 15) {
     const arr = new Float32Array(numPoints * 3);
@@ -243,7 +243,7 @@ function initCursor() {
         requestAnimationFrame(trackRing);
     })();
 
-    document.querySelectorAll('a, button, .project-card, .skill-item, .experience-card, .education-card, .resume-card, input, textarea, .chat-bubble, #chatSendBtn').forEach(el => {
+    document.querySelectorAll('a, button, .project-schematic-item, .skill-item-hud, .timeline-node, input, textarea, .chat-bubble, #chatSendBtn').forEach(el => {
         el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
         el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
     });
@@ -319,20 +319,12 @@ function initScrollAnimations() {
         onToggle: self => { if (self.isActive) activeShapeIndex = 1; }
     });
     ScrollTrigger.create({
-        trigger: '#education', start: 'top center', end: 'bottom center',
-        onToggle: self => { if (self.isActive) activeShapeIndex = 2; }
-    });
-    ScrollTrigger.create({
-        trigger: '#experience', start: 'top center', end: 'bottom center',
+        trigger: '#timeline', start: 'top center', end: 'bottom center',
         onToggle: self => { if (self.isActive) activeShapeIndex = 2; }
     });
     ScrollTrigger.create({
         trigger: '#projects', start: 'top center', end: 'bottom center',
         onToggle: self => { if (self.isActive) activeShapeIndex = 3; }
-    });
-    ScrollTrigger.create({
-        trigger: '#resume', start: 'top center', end: 'bottom center',
-        onToggle: self => { if (self.isActive) activeShapeIndex = 4; }
     });
     ScrollTrigger.create({
         trigger: '#contact', start: 'top center', end: 'bottom center',
@@ -378,8 +370,8 @@ function initScrollAnimations() {
         });
     });
 
-    // Stagger project cards with simple fade-up
-    gsap.utils.toArray('.project-card').forEach((card) => {
+    // Stagger projects schematic items with simple fade-up
+    gsap.utils.toArray('.project-schematic-item').forEach((card) => {
         gsap.fromTo(card,
             { y: 30, opacity: 0 },
             { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out',
@@ -389,11 +381,11 @@ function initScrollAnimations() {
     });
 
     // Skills stagger bounce
-    gsap.utils.toArray('.skill-item').forEach((el, i) => {
+    gsap.utils.toArray('.skill-item-hud').forEach((el, i) => {
         gsap.fromTo(el,
             { y: 20, opacity: 0, scale: 0.95 },
             { y: 0, opacity: 1, scale: 1, duration: 0.4, delay: i * 0.03, ease: 'power2.out',
-              scrollTrigger: { trigger: '.skills-list', start: 'top 85%', toggleActions: 'play none none none' }
+              scrollTrigger: { trigger: '.skills-hud', start: 'top 85%', toggleActions: 'play none none none' }
             }
         );
     });
@@ -405,10 +397,10 @@ function initScrollAnimations() {
     });
 }
 
-// ===== TILT CARD EFFECT =====
+// ===== TILT HUD CARDS EFFECT =====
 function initTilt() {
     if (window.matchMedia('(hover: none)').matches) return;
-    const cards = document.querySelectorAll('.content-card, .project-card, .resume-card');
+    const cards = document.querySelectorAll('.hud-container, .project-schematic-item, .open-timeline-rail, .timeline-node');
     cards.forEach(card => {
         card.addEventListener('mousemove', e => {
             const rect = card.getBoundingClientRect();
@@ -418,7 +410,7 @@ function initTilt() {
             const yc = rect.height / 2;
             const dx = (x - xc) / xc; 
             const dy = (y - yc) / yc; 
-            card.style.transform = `perspective(800px) rotateY(${dx * 4}deg) rotateX(${-dy * 4}deg) translateY(-4px)`;
+            card.style.transform = `perspective(800px) rotateY(${dx * 3}deg) rotateX(${-dy * 3}deg) translateY(-2px)`;
         });
         card.addEventListener('mouseleave', () => {
             card.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg) translateY(0)';
@@ -457,6 +449,48 @@ function initTyped() {
         setTimeout(tick, del ? 60 : 90);
     }
     setTimeout(tick, 800);
+}
+
+// ===== SMART CLIENT-SIDE RAG FALLBACK ENGINE =====
+function getLocalFallbackResponse(query) {
+    const q = query.toLowerCase();
+    
+    // Project queries
+    if (q.includes("project") || q.includes("build") || q.includes("made") || q.includes("create") || q.includes("portfolio")) {
+        return "Sarang has built several notable projects, representing a full stack: \n\n1. DocPilot AI: Developer documentation tool mapping repos into interactive code graphs (React, FastAPI).\n2. Anti-Fake Chain: Counterfeit product detection utilizing NFC tags verified on a blockchain ledger.\n3. AgriDetect AI: Plant leaf disease classifier using ML deep learning.\n4. Zecpath AI: Automated AI recruiter matching resumes to jobs.\n\nWhich of these would you like to explore in detail?";
+    }
+    
+    // Internship and Experience queries
+    if (q.includes("experience") || q.includes("intern") || q.includes("work") || q.includes("career") || q.includes("job")) {
+        return "Sarang's experience consists of key developer internships:\n\n1. Zecser Business LLP (May 2026 - Present): AI Developer Intern building NLP pipelines (Python, spaCy) and REST APIs.\n2. Infosys Springboard (Dec 2025 - Mar 2026): AI Intern deploying ML models (Python, scikit-learn).\n3. Grohub (Jun 2025 - Oct 2025): Web Developer Intern writing responsive web features.\n4. Eqsoft Business Solutions (Jun 2025): Web Developer Intern creating Flutter and ASP.NET modules.";
+    }
+    
+    // Skills and Tech Stack queries
+    if (q.includes("skill") || q.includes("tech") || q.includes("stack") || q.includes("know") || q.includes("language") || q.includes("python") || q.includes("javascript")) {
+        return "Sarang has a robust technical skillset:\n\n- Frontend: React, Three.js, JavaScript (ES6+), Flutter, HTML5, CSS3\n- Backend: Node.js, Express, Django, .NET, REST APIs\n- Programming: Python, Java, C++, C#, PHP\n- Tools & Cloud: AWS, Docker, Git, Linux, PostgreSQL, MySQL, Postman";
+    }
+    
+    // Education queries
+    if (q.includes("education") || q.includes("college") || q.includes("cgpa") || q.includes("study") || q.includes("degree") || q.includes("school")) {
+        return "Sarang K is currently pursuing his B.Tech in Computer Science and Engineering at the College Of Engineering Thalassery (2022 - 2026 batch) with an impressive CGPA of 8.88.";
+    }
+
+    // Contact queries
+    if (q.includes("contact") || q.includes("reach") || q.includes("hire") || q.includes("email") || q.includes("linkedin") || q.includes("github")) {
+        return "You can reach out to Sarang K via:\n\n- LinkedIn: linkedin.com/in/sarang-k-37073226b\n- GitHub: github.com/Sarangk2024\n- Resume download: Click 'DOWNLOAD CV' inside the Get in Touch section on this page!";
+    }
+    
+    // General programming Q&A
+    if (q.includes("coding") || q.includes("programming") || q.includes("what is") || q.includes("how to") || q.includes("explain")) {
+        return "I am currently running in local offline sandbox mode since a serverless Node API is only active in a Vercel production hosting environment. However, I can help answer questions about Sarang's resume, projects, or skills! Once deployed, I can execute general technical questions using Gemini.";
+    }
+
+    // Greeting keywords (evaluated last to prevent short-circuiting specific questions that start with greetings)
+    if (q.match(/\b(hi|hello|hey|greetings|yo|howdy|sup)\b/)) {
+        return "Hello! I am Sarang's AI assistant. Ask me anything about Sarang's experience, education, projects, technical skills, or contact info!";
+    }
+    
+    return "I am running in local fallback mode. I know everything about Sarang's skills, internships, projects, and education. Try asking: 'What projects did he build?' or 'Tell me about his internships'.";
 }
 
 // ===== NATIVE CHATBOT RAG INTEGRATION =====
@@ -523,7 +557,10 @@ function initChatbot() {
                 body: JSON.stringify({ message: msgText, history: chatHistory })
             });
 
-            if (!res.ok) throw new Error('API failure');
+            if (!res.ok) {
+                // Any non-200 response code (like 501 from Python local server) triggers the fallback
+                throw new Error('Local server sandbox fallback triggered');
+            }
             const data = await res.json();
 
             // Remove loading
@@ -536,20 +573,30 @@ function initChatbot() {
             messages.appendChild(botBubble);
             messages.scrollTop = messages.scrollHeight;
 
-            // Push to local chat history for subsequent context
             chatHistory.push({ role: 'user', text: msgText });
             chatHistory.push({ role: 'model', text: data.response });
-            if (chatHistory.length > 12) chatHistory = chatHistory.slice(chatHistory.length - 12); // limit context buffer
+            if (chatHistory.length > 12) chatHistory = chatHistory.slice(chatHistory.length - 12);
 
         } catch (err) {
-            console.error('Chat bot error:', err);
-            loadBubble.remove();
+            console.warn('API chat fetch failed, running offline client RAG engine:', err);
             
-            const errBubble = document.createElement('div');
-            errBubble.className = 'chat-bubble bot-bubble';
-            errBubble.textContent = 'Connection error. Please try again later.';
-            messages.appendChild(errBubble);
-            messages.scrollTop = messages.scrollHeight;
+            // Execute fallback
+            const fallbackText = getLocalFallbackResponse(msgText);
+            
+            // Simulate 600ms latency for processing
+            setTimeout(() => {
+                loadBubble.remove();
+                
+                const botBubble = document.createElement('div');
+                botBubble.className = 'chat-bubble bot-bubble';
+                botBubble.textContent = fallbackText;
+                messages.appendChild(botBubble);
+                messages.scrollTop = messages.scrollHeight;
+
+                chatHistory.push({ role: 'user', text: msgText });
+                chatHistory.push({ role: 'model', text: fallbackText });
+                if (chatHistory.length > 12) chatHistory = chatHistory.slice(chatHistory.length - 12);
+            }, 600);
         }
     });
 }
