@@ -1,13 +1,14 @@
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-// ===== THREE.JS — Morphing Particle Grid =====
+// ===== THREE.JS — Morphing Particle Grid & Camera Flight =====
 let scene, camera, renderer, particleGeometry, particleSystem;
 let activeShapeIndex = 0;
+let scrollProgress = 0;
 let mouseX = 0, mouseY = 0;
 
 // Coordinate sets
 let targetShapes = [];
-const N = 4000; // Number of particles
+const N = 4500; // Number of particles
 
 function generateSphere(numPoints, radius = 15) {
     const arr = new Float32Array(numPoints * 3);
@@ -128,7 +129,7 @@ function initThree() {
     // Subtle white dots for retro-futuristic styling
     const material = new THREE.PointsMaterial({
         color: 0xffffff,
-        size: 0.14,
+        size: 0.13,
         transparent: true,
         opacity: 0.45,
         sizeAttenuation: true
@@ -148,8 +149,9 @@ function initThree() {
         requestAnimationFrame(loop);
         time += 0.004;
 
-        particleSystem.rotation.y += 0.001;
-        particleSystem.rotation.x = Math.sin(time * 0.4) * 0.04;
+        // Animate grid base coordinates
+        particleSystem.rotation.y = time * 0.03 + scrollProgress * Math.PI * 1.5;
+        particleSystem.rotation.x = Math.sin(time * 0.3) * 0.03;
 
         const posAttr = particleGeometry.attributes.position;
         const positions = posAttr.array;
@@ -190,10 +192,15 @@ function initThree() {
         }
         posAttr.needsUpdate = true;
 
-        // Camera follow
-        camera.position.x += (mouseX * 5 - camera.position.x) * 0.04;
-        camera.position.y += (-mouseY * 5 - camera.position.y) * 0.04;
-        camera.lookAt(scene.position);
+        // Interactive camera flight along Z and X axes based on horizontal scroll progress
+        const pathX = scrollProgress * 65; // Fly camera rightwards as we scroll horizontally
+        const pathZ = 32 - Math.sin(scrollProgress * Math.PI) * 12; // zoom camera in and out smoothly
+        const pathY = Math.cos(scrollProgress * Math.PI * 2) * 3;
+
+        camera.position.x += (pathX + mouseX * 5 - camera.position.x) * 0.04;
+        camera.position.y += (pathY - mouseY * 4 - camera.position.y) * 0.04;
+        camera.position.z += (pathZ - camera.position.z) * 0.04;
+        camera.lookAt(pathX, 0, 0);
 
         renderer.render(scene, camera);
     })();
@@ -230,7 +237,7 @@ function initCursor() {
         requestAnimationFrame(trackRing);
     })();
 
-    document.querySelectorAll('a, button, .project-card, .skill-item, .experience-card, .education-card, .resume-card, input, textarea, #theme-toggle').forEach(el => {
+    document.querySelectorAll('a, button, .project-widget, .skill-item, .timeline-node-card, .blueprint-card, input, textarea, #theme-toggle').forEach(el => {
         el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
         el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
     });
@@ -281,115 +288,187 @@ function scrambleText(element, targetText, duration = 0.8) {
             frame++;
             requestAnimationFrame(tick);
         } else {
-            element.innerHTML = targetText; // fallback to complete text
+            element.innerHTML = targetText;
         }
     })();
 }
 
 // ===== GSAP SCROLL & WEBGL SHAPE TRIGGERS =====
 function initScrollAnimations() {
-    // 3D Particle Shape Switch Triggers
-    ScrollTrigger.create({
-        trigger: '#about',
-        start: 'top center',
-        end: 'bottom center',
-        onToggle: self => { if (self.isActive) activeShapeIndex = 0; }
-    });
-    ScrollTrigger.create({
-        trigger: '#skills',
-        start: 'top center',
-        end: 'bottom center',
-        onToggle: self => { if (self.isActive) activeShapeIndex = 1; }
-    });
-    ScrollTrigger.create({
-        trigger: '#education',
-        start: 'top center',
-        end: 'bottom center',
-        onToggle: self => { if (self.isActive) activeShapeIndex = 2; }
-    });
-    ScrollTrigger.create({
-        trigger: '#experience',
-        start: 'top center',
-        end: 'bottom center',
-        onToggle: self => { if (self.isActive) activeShapeIndex = 2; }
-    });
-    ScrollTrigger.create({
-        trigger: '#projects',
-        start: 'top center',
-        end: 'bottom center',
-        onToggle: self => { if (self.isActive) activeShapeIndex = 3; }
-    });
-    ScrollTrigger.create({
-        trigger: '#resume',
-        start: 'top center',
-        end: 'bottom center',
-        onToggle: self => { if (self.isActive) activeShapeIndex = 4; }
-    });
-    ScrollTrigger.create({
-        trigger: '#contact',
-        start: 'top center',
-        end: 'bottom center',
-        onToggle: self => { if (self.isActive) activeShapeIndex = 4; }
-    });
+    const wrapper = document.querySelector('.horizontal-wrapper');
+    if (!wrapper) return;
 
-    // Reveal elements upward
-    gsap.utils.toArray('.reveal-up').forEach((el) => {
-        gsap.fromTo(el,
-            { y: 40, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out',
-              scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
+    const isHorizontal = window.innerWidth > 768;
+
+    if (isHorizontal) {
+        // Desktop horizontal scroll layout
+        const scrollTween = gsap.to(wrapper, {
+            x: () => -(wrapper.scrollWidth - window.innerWidth),
+            ease: 'none',
+            scrollTrigger: {
+                trigger: wrapper,
+                pin: true,
+                scrub: 1.2,
+                start: 'top top',
+                end: () => "+=" + (wrapper.scrollWidth - window.innerWidth),
+                invalidateOnRefresh: true
             }
-        );
-    });
-
-    // Animate Grid Drawing Lines
-    gsap.utils.toArray('.grid-line-horizontal').forEach(line => {
-        gsap.fromTo(line, 
-            { scaleX: 0 },
-            { scaleX: 1, transformOrigin: 'left center', duration: 1.2, ease: 'power3.inOut',
-              scrollTrigger: { trigger: line, start: 'top 85%' }
-            }
-        );
-    });
-
-    gsap.utils.toArray('.grid-line-vertical').forEach(line => {
-        gsap.fromTo(line, 
-            { scaleY: 0 },
-            { scaleY: 1, transformOrigin: 'top center', duration: 1.5, ease: 'power3.inOut',
-              scrollTrigger: { trigger: line, start: 'top 85%' }
-            }
-        );
-    });
-
-    // Digital Scramble Text Trigger for Headings
-    gsap.utils.toArray('.section-title').forEach(title => {
-        const textToScramble = title.innerText;
-        ScrollTrigger.create({
-            trigger: title,
-            start: 'top 85%',
-            onEnter: () => scrambleText(title, textToScramble, 0.8)
         });
-    });
 
-    // Stagger project cards with simple fade-up
-    gsap.utils.toArray('.project-card').forEach((card) => {
-        gsap.fromTo(card,
-            { y: 30, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out',
-              scrollTrigger: { trigger: card, start: 'top 92%', toggleActions: 'play none none none' }
-            }
-        );
-    });
+        // 3D Particle Shape Switch Triggers
+        ScrollTrigger.create({
+            trigger: '#about',
+            containerAnimation: scrollTween,
+            start: 'left center',
+            end: 'right center',
+            onToggle: self => { if (self.isActive) activeShapeIndex = 0; }
+        });
+        ScrollTrigger.create({
+            trigger: '#skills',
+            containerAnimation: scrollTween,
+            start: 'left center',
+            end: 'right center',
+            onToggle: self => { if (self.isActive) activeShapeIndex = 1; }
+        });
+        ScrollTrigger.create({
+            trigger: '#timeline',
+            containerAnimation: scrollTween,
+            start: 'left center',
+            end: 'right center',
+            onToggle: self => { if (self.isActive) activeShapeIndex = 2; }
+        });
+        ScrollTrigger.create({
+            trigger: '#projects',
+            containerAnimation: scrollTween,
+            start: 'left center',
+            end: 'right center',
+            onToggle: self => { if (self.isActive) activeShapeIndex = 3; }
+        });
+        ScrollTrigger.create({
+            trigger: '#contact',
+            containerAnimation: scrollTween,
+            start: 'left center',
+            end: 'right center',
+            onToggle: self => { if (self.isActive) activeShapeIndex = 4; }
+        });
 
-    // Skills stagger bounce
-    gsap.utils.toArray('.skill-item').forEach((el, i) => {
-        gsap.fromTo(el,
-            { y: 20, opacity: 0, scale: 0.95 },
-            { y: 0, opacity: 1, scale: 1, duration: 0.4, delay: i * 0.03, ease: 'power2.out',
-              scrollTrigger: { trigger: '.skills-list', start: 'top 85%', toggleActions: 'play none none none' }
+        // Track global scroll progress for Three.js flythrough
+        ScrollTrigger.create({
+            trigger: wrapper,
+            start: 'top top',
+            end: () => "+=" + (wrapper.scrollWidth - window.innerWidth),
+            onUpdate: self => {
+                scrollProgress = self.progress;
             }
-        );
-    });
+        });
+
+        // Reveal elements upward (horizontally triggered)
+        gsap.utils.toArray('.reveal-up').forEach((el) => {
+            gsap.fromTo(el,
+                { y: 30, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out',
+                  scrollTrigger: { 
+                      trigger: el, 
+                      containerAnimation: scrollTween,
+                      start: 'left 90%', 
+                      toggleActions: 'play none none none' 
+                  }
+                }
+            );
+        });
+
+        // Animate Grid Drawing Lines
+        gsap.utils.toArray('.grid-line-horizontal').forEach(line => {
+            gsap.fromTo(line, 
+                { scaleX: 0 },
+                { scaleX: 1, transformOrigin: 'left center', duration: 1.2, ease: 'power3.inOut',
+                  scrollTrigger: { trigger: line, containerAnimation: scrollTween, start: 'left 85%' }
+                }
+            );
+        });
+
+        gsap.utils.toArray('.grid-line-vertical').forEach(line => {
+            gsap.fromTo(line, 
+                { scaleY: 0 },
+                { scaleY: 1, transformOrigin: 'top center', duration: 1.5, ease: 'power3.inOut',
+                  scrollTrigger: { trigger: line, containerAnimation: scrollTween, start: 'left 85%' }
+                }
+            );
+        });
+
+        // Digital Scramble Text Trigger for Headings
+        gsap.utils.toArray('.section-title').forEach(title => {
+            const textToScramble = title.innerText;
+            ScrollTrigger.create({
+                trigger: title,
+                containerAnimation: scrollTween,
+                start: 'left 85%',
+                onEnter: () => scrambleText(title, textToScramble, 0.8)
+            });
+        });
+
+        // Stagger project cards horizontally
+        gsap.utils.toArray('.project-widget').forEach((card) => {
+            gsap.fromTo(card,
+                { y: 30, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out',
+                  scrollTrigger: { trigger: card, containerAnimation: scrollTween, start: 'left 92%', toggleActions: 'play none none none' }
+                }
+            );
+        });
+
+        // Timeline nodes reveal
+        gsap.utils.toArray('.timeline-node-card').forEach((node, i) => {
+            gsap.fromTo(node,
+                { y: 40, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.6, delay: i * 0.05, ease: 'power2.out',
+                  scrollTrigger: { trigger: node, containerAnimation: scrollTween, start: 'left 90%', toggleActions: 'play none none none' }
+                }
+            );
+        });
+        
+    } else {
+        // Fallback standard vertical layouts on mobile
+        gsap.utils.toArray('.reveal-up').forEach((el) => {
+            gsap.fromTo(el,
+                { y: 30, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out',
+                  scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
+                }
+            );
+        });
+
+        gsap.utils.toArray('.section-title').forEach(title => {
+            const textToScramble = title.innerText;
+            ScrollTrigger.create({
+                trigger: title,
+                start: 'top 85%',
+                onEnter: () => scrambleText(title, textToScramble, 0.8)
+            });
+        });
+
+        // Particle shapes vertical triggers
+        ScrollTrigger.create({
+            trigger: '#about', start: 'top center', end: 'bottom center',
+            onToggle: self => { if (self.isActive) activeShapeIndex = 0; }
+        });
+        ScrollTrigger.create({
+            trigger: '#skills', start: 'top center', end: 'bottom center',
+            onToggle: self => { if (self.isActive) activeShapeIndex = 1; }
+        });
+        ScrollTrigger.create({
+            trigger: '#timeline', start: 'top center', end: 'bottom center',
+            onToggle: self => { if (self.isActive) activeShapeIndex = 2; }
+        });
+        ScrollTrigger.create({
+            trigger: '#projects', start: 'top center', end: 'bottom center',
+            onToggle: self => { if (self.isActive) activeShapeIndex = 3; }
+        });
+        ScrollTrigger.create({
+            trigger: '#contact', start: 'top center', end: 'bottom center',
+            onToggle: self => { if (self.isActive) activeShapeIndex = 4; }
+        });
+    }
 
     // Hero background text parallax
     gsap.to('.hero-bg-text', {
@@ -401,7 +480,7 @@ function initScrollAnimations() {
 // ===== TILT CARD EFFECT =====
 function initTilt() {
     if (window.matchMedia('(hover: none)').matches) return;
-    const cards = document.querySelectorAll('.content-card, .project-card, .resume-card');
+    const cards = document.querySelectorAll('.blueprint-card, .project-widget, .timeline-node-card');
     cards.forEach(card => {
         card.addEventListener('mousemove', e => {
             const rect = card.getBoundingClientRect();
@@ -409,9 +488,9 @@ function initTilt() {
             const y = e.clientY - rect.top;
             const xc = rect.width / 2;
             const yc = rect.height / 2;
-            const dx = (x - xc) / xc; // -1 to 1
-            const dy = (y - yc) / yc; // -1 to 1
-            card.style.transform = `perspective(800px) rotateY(${dx * 4}deg) rotateX(${-dy * 4}deg) translateY(-4px)`;
+            const dx = (x - xc) / xc; 
+            const dy = (y - yc) / yc; 
+            card.style.transform = `perspective(800px) rotateY(${dx * 3}deg) rotateX(${-dy * 3}deg) translateY(-2px)`;
         });
         card.addEventListener('mouseleave', () => {
             card.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg) translateY(0)';
@@ -487,13 +566,13 @@ function initContactForm() {
         const btnText    = btn.querySelector('.btn-text');
         const btnIcon    = btn.querySelector('.btn-icon');
         const btnLoading = btn.querySelector('.btn-loading');
-        btn.disabled = true; btnText.textContent = 'Sending...'; btnIcon.style.display = 'none'; btnLoading.style.display = 'inline';
+        btn.disabled = true; btnText.textContent = 'SENDING...'; btnIcon.style.display = 'none'; btnLoading.style.display = 'inline';
 
         try {
             const res  = await fetch('https://api.web3forms.com/submit', {
                 method: 'POST', headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    access_key: '1360a426-058e-4c03-9906-5f2cf6e41de2', // Get your free key at web3forms.com
+                    access_key: '1360a426-058e-4c03-9906-5f2cf6e41de2',
                     name, email, message
                 })
             });
@@ -503,7 +582,7 @@ function initContactForm() {
         } catch(err) {
             showStatus((err.message || 'Something went wrong. Please try again!'), 'error');
         } finally {
-            btn.disabled = false; btnText.textContent = 'Send Message'; btnIcon.style.display = 'inline'; btnLoading.style.display = 'none';
+            btn.disabled = false; btnText.textContent = 'SEND PACKET'; btnIcon.style.display = 'inline'; btnLoading.style.display = 'none';
         }
     });
 
@@ -517,7 +596,7 @@ function initContactForm() {
 function toggleTheme() {
     document.body.classList.toggle('light-theme');
     const light = document.body.classList.contains('light-theme');
-    document.getElementById('theme-icon').innerHTML = light ? '&#x2600;&#xFE0F;' : '&#x1F319;'; // Sun or Moon
+    document.getElementById('theme-icon').innerHTML = light ? '&#x2600;&#xFE0F;' : '&#x1F319;'; 
     localStorage.setItem('theme', light ? 'light' : 'dark');
 }
 function applySavedTheme() {
@@ -529,7 +608,22 @@ function applySavedTheme() {
 
 // ===== SMOOTH SCROLL =====
 function scrollToSection(id) {
-    gsap.to(window, { duration: 1, scrollTo: { y: '#'+id, offsetY: 80 }, ease: 'power2.inOut' });
+    const wrapper = document.querySelector('.horizontal-wrapper');
+    const targetElement = document.getElementById(id);
+    if (!wrapper || !targetElement) return;
+
+    const isHorizontal = window.innerWidth > 768;
+    if (!isHorizontal) {
+        gsap.to(window, { duration: 1.2, scrollTo: { y: '#'+id, offsetY: 80 }, ease: 'power2.inOut' });
+        return;
+    }
+
+    // Scroll window vertically to trigger correct horizontal transition coordinate
+    const rect = targetElement.getBoundingClientRect();
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const leftOffset = rect.left - wrapperRect.left;
+    
+    gsap.to(window, { duration: 1.2, scrollTo: { y: leftOffset }, ease: 'power2.inOut' });
 }
 
 // ===== INIT =====
