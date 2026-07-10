@@ -20,29 +20,26 @@
     
     <nav class="navbar" id="navbar">
         <div class="nav-brand">
-            <span class="brand-text">SARANG.OS</span>
+            <span class="brand-text">SARANG K</span>
             <span class="brand-dot"></span>
         </div>
         <div class="nav-links">
-            <a href="#about" class="nav-link" onclick="scrollToSection('about'); return false;"><span class="nav-coord">[01]</span> ABOUT</a>
-            <a href="#skills" class="nav-link" onclick="scrollToSection('skills'); return false;"><span class="nav-coord">[02]</span> SKILLS</a>
-            <a href="#timeline" class="nav-link" onclick="scrollToSection('timeline'); return false;"><span class="nav-coord">[03]</span> TIMELINE</a>
-            <a href="#projects" class="nav-link" onclick="scrollToSection('projects'); return false;"><span class="nav-coord">[04]</span> PROJECTS</a>
-            <a href="#contact" class="nav-link" onclick="scrollToSection('contact'); return false;"><span class="nav-coord">[05]</span> CONTACT</a>
+            <a href="#about" class="nav-link" onclick="scrollToSection('about'); return false;">ABOUT</a>
+            <a href="#skills" class="nav-link" onclick="scrollToSection('skills'); return false;">SKILLS</a>
+            <a href="#education" class="nav-link" onclick="scrollToSection('education'); return false;">EDUCATION</a>
+            <a href="#experience" class="nav-link" onclick="scrollToSection('experience'); return false;">EXPERIENCE</a>
+            <a href="#projects" class="nav-link" onclick="scrollToSection('projects'); return false;">PROJECTS</a>
+            <a href="#resume" class="nav-link" onclick="scrollToSection('resume'); return false;">RESUME</a>
+            <a href="#contact" class="nav-link" onclick="scrollToSection('contact'); return false;">CONTACT</a>
         </div>
-        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">
-            <span id="theme-icon">&#x1F319;</span>
-        </button>
     </nav>
 
-    <!-- Fullscreen Horizontal Wrapper -->
-    <div class="horizontal-wrapper">
-        
-        <!-- PANEL 1: ABOUT / HERO -->
-        <section id="about" class="content-panel hero-panel">
+    <div class="main-content">
+        <!-- HERO / ABOUT SECTION -->
+        <section id="about" class="content-section hero-section">
             <div class="hero-bg-text" aria-hidden="true">SARANG</div>
-            <div class="blueprint-card hero-card">
-                <!-- Grid Lines & Corner Anchors -->
+            <div class="content-card about-card">
+                <!-- Grid Lines and Corner Anchors -->
                 <div class="grid-line-horizontal" style="top: 0;"></div>
                 <div class="grid-line-horizontal" style="bottom: 0;"></div>
                 <div class="grid-line-vertical" style="left: 0;"></div>
@@ -61,17 +58,17 @@
                         </div>
                     </div>
                     <div class="about-text-col">
-                        <div class="hero-tag"><span class="status-dot"></span> AVAILABLE FOR WORK</div>
-                        <h1 class="hero-name">Sarang K</h1>
-                        <h2 class="hero-role"><span id="typedText">Software Developer</span><span class="cursor-blink">|</span></h2>
-                        <p class="hero-quote"><em>"The best way to predict the future is to create it."</em></p>
+                        <div class="hero-tag reveal-up"><span class="status-dot"></span> Available for work</div>
+                        <h1 class="hero-name reveal-up">Sarang K</h1>
+                        <h2 class="hero-role reveal-up"><span id="typedText">Software Developer</span><span class="cursor-blink">|</span></h2>
+                        <p class="hero-quote reveal-up"><em>"The best way to predict the future is to create it."</em></p>
                         
-                        <div class="social-links">
+                        <div class="social-links reveal-up">
                             <a href="https://www.linkedin.com/in/sarang-k-37073226b" target="_blank" class="social-btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
                             <a href="https://github.com/Sarangk2024" target="_blank" class="social-btn"><i class="fab fa-github"></i> GitHub</a>
                         </div>
                         
-                        <div class="hero-stats">
+                        <div class="hero-stats reveal-up">
                             <div class="stat-item">
                                 <span class="stat-number" data-count="9">0</span><span class="stat-plus">+</span>
                                 <span class="stat-label">Projects</span>
@@ -79,7 +76,7 @@
                             <div class="stat-divider"></div>
                             <div class="stat-item">
                                 <span class="stat-number" data-count="20">0</span><span class="stat-plus">+</span>
-                                <span class="stat-label">Tech Stack</span>
+                                <span class="stat-label">Technologies</span>
                             </div>
                             <div class="stat-divider"></div>
                             <div class="stat-item">
@@ -90,17 +87,17 @@
                     </div>
                 </div>
             </div>
-            <div class="panel-coordinate">SYS.LOC // 00.01</div>
         </section>
 
-        <!-- PANEL 2: SKILLS MATRIX -->
-        <section id="skills" class="content-panel skills-panel">
+        <!-- SKILLS SECTION -->
+        <section id="skills" class="content-section">
             <div class="section-header">
-                <span class="section-tag">[02] MATRIX</span>
-                <h1 class="section-title">My Skills</h1>
+                <span class="section-tag reveal-up">What I Know</span>
+                <h1 class="section-title reveal-up">My Skills</h1>
             </div>
             
-            <div class="blueprint-card skills-card">
+            <div class="content-card reveal-up">
+                <!-- Grid Lines and Corner Anchors -->
                 <div class="grid-line-horizontal" style="top: 0;"></div>
                 <div class="grid-line-horizontal" style="bottom: 0;"></div>
                 <div class="grid-line-vertical" style="left: 0;"></div>
@@ -110,6 +107,10 @@
                 <span class="corner-anchor bottom-left">+</span>
                 <span class="corner-anchor bottom-right">+</span>
 
+                <p>I am a passionate and driven Computer Science and Engineering student with a strong interest in software development, full-stack development, and Java programming. Dedicated to building beautiful and functional applications, combining technical skills with a creative eye. My journey has equipped me with a robust understanding of various technologies, from web frameworks like React and Django to mobile development with Flutter.</p>
+
+                <h2>Languages and Technologies</h2>
+                
                 <div class="skill-groups">
                     <div class="skill-group">
                         <h3>Frontend</h3>
@@ -124,7 +125,7 @@
                     </div>
 
                     <div class="skill-group">
-                        <h3>Backend & APIs</h3>
+                        <h3>Backend & Frameworks</h3>
                         <div class="skills-list">
                             <div class="skill-item"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" alt="Node.js"><span>Node.js</span></div>
                             <div class="skill-item"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original.svg" alt="Express"><span>Express</span></div>
@@ -140,11 +141,12 @@
                             <div class="skill-item"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="Java"><span>Java</span></div>
                             <div class="skill-item"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="C++"><span>C++</span></div>
                             <div class="skill-item"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" alt="C#"><span>C#</span></div>
+                            <div class="skill-item"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/php/php-original.svg" alt="PHP"><span>PHP</span></div>
                         </div>
                     </div>
 
                     <div class="skill-group">
-                        <h3>Databases & Cloud</h3>
+                        <h3>Cloud & Tools</h3>
                         <div class="skills-list">
                             <div class="skill-item"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" alt="MySQL"><span>MySQL</span></div>
                             <div class="skill-item"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"><span>PostgreSQL</span></div>
@@ -152,103 +154,77 @@
                             <div class="skill-item"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" alt="Git"><span>Git</span></div>
                             <div class="skill-item"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" alt="Docker"><span>Docker</span></div>
                             <div class="skill-item"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="Linux"><span>Linux</span></div>
+                            <div class="skill-item"><img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="Postman"><span>Postman</span></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="panel-coordinate">SYS.LOC // 00.02</div>
         </section>
 
-        <!-- PANEL 3: TIMELINE (EDUCATION & EXPERIENCE) -->
-        <section id="timeline" class="content-panel timeline-panel">
+        <!-- EDUCATION SECTION -->
+        <section id="education" class="content-section">
             <div class="section-header">
-                <span class="section-tag">[03] CHRONOLOGY</span>
-                <h1 class="section-title">My Timeline</h1>
+                <span class="section-tag reveal-up">Academic Background</span>
+                <h1 class="section-title reveal-up">My Education</h1>
             </div>
+            
+            <div class="content-card education-card reveal-up">
+                <!-- Grid Lines and Corner Anchors -->
+                <div class="grid-line-horizontal" style="top: 0;"></div>
+                <div class="grid-line-horizontal" style="bottom: 0;"></div>
+                <div class="grid-line-vertical" style="left: 0;"></div>
+                <div class="grid-line-vertical" style="right: 0;"></div>
+                <span class="corner-anchor top-left">+</span>
+                <span class="corner-anchor top-right">+</span>
+                <span class="corner-anchor bottom-left">+</span>
+                <span class="corner-anchor bottom-right">+</span>
 
-            <!-- Horizontal Blueprint Rail -->
-            <div class="timeline-rail-wrapper">
-                <div class="horizontal-rail-line"></div>
-                
-                <div class="timeline-scroll-container">
-                    
-                    <!-- Timline Block 1: Education -->
-                    <div class="timeline-node-card">
-                        <div class="node-rail-connector"></div>
+                <div class="timeline-head">
+                    <div>
                         <span class="timeline-kicker">2022 - 2026 Batch</span>
-                        <h3>College Of Engineering Thalassery</h3>
-                        <span class="timeline-badge">8.88 CGPA</span>
-                        <p class="timeline-role">Computer Science and Engineering</p>
-                        <p class="timeline-location"><i class="fas fa-location-dot"></i> Thalassery, Kerala, India</p>
+                        <h2>College Of Engineering Thalassery</h2>
                     </div>
-
-                    <!-- Timline Block 2: Intern 1 -->
-                    <div class="timeline-node-card">
-                        <div class="node-rail-connector"></div>
-                        <span class="timeline-kicker">May 2026 - Present</span>
-                        <h3>AI Developer Intern</h3>
-                        <span class="timeline-badge">Zecser Business LLP</span>
-                        <p class="timeline-role">NLP Pipelines, Python, REST APIs, Git, AWS</p>
-                        <ul class="node-bullets">
-                            <li>Building document pipelines with spaCy.</li>
-                            <li>Integrating backend AI modules.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Timline Block 3: Intern 2 -->
-                    <div class="timeline-node-card">
-                        <div class="node-rail-connector"></div>
-                        <span class="timeline-kicker">Dec 2025 - Mar 2026</span>
-                        <h3>AI Intern</h3>
-                        <span class="timeline-badge">Infosys Springboard</span>
-                        <p class="timeline-role">Machine Learning, Python, scikit-learn</p>
-                        <ul class="node-bullets">
-                            <li>Preprocessed complex datasets.</li>
-                            <li>Trained ML classifiers.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Timline Block 4: Intern 3 -->
-                    <div class="timeline-node-card">
-                        <div class="node-rail-connector"></div>
-                        <span class="timeline-kicker">Jun 2025 - Oct 2025</span>
-                        <h3>Web Developer Intern</h3>
-                        <span class="timeline-badge">Grohub</span>
-                        <p class="timeline-role">UI/UX Design, JS, Performance Tuning</p>
-                        <ul class="node-bullets">
-                            <li>Built clean frontend modules.</li>
-                            <li>Optimized site performance.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Timline Block 5: Intern 4 -->
-                    <div class="timeline-node-card">
-                        <div class="node-rail-connector"></div>
-                        <span class="timeline-kicker">Jun 2025</span>
-                        <h3>Web Developer Intern</h3>
-                        <span class="timeline-badge">Eqsoft Business</span>
-                        <p class="timeline-role">ASP.NET, Flutter, SQL, REST APIs</p>
-                        <ul class="node-bullets">
-                            <li>Created Flutter modules.</li>
-                            <li>Debugged database procedures.</li>
-                        </ul>
-                    </div>
-
+                    <span class="timeline-badge">8.88 CGPA</span>
                 </div>
+                <p class="timeline-role">Computer Science and Engineering</p>
+                <p class="timeline-location"><i class="fas fa-location-dot"></i> Thalassery, Kannur, Kerala, India</p>
             </div>
-            <div class="panel-coordinate">SYS.LOC // 00.03</div>
         </section>
 
-        <!-- PANEL 4: PROJECTS GRID -->
-        <section id="projects" class="content-panel projects-panel">
+        <!-- EXPERIENCE SECTION -->
+        <section id="experience" class="content-section">
             <div class="section-header">
-                <span class="section-tag">[04] ARCHIVE</span>
-                <h1 class="section-title">My Projects</h1>
+                <span class="section-tag reveal-up">Where I've Worked</span>
+                <h1 class="section-title reveal-up">Work Experience</h1>
             </div>
+            
+            <div class="experience-list">
+                <!-- Job 1 -->
+                <article class="content-card experience-card reveal-up">
+                    <div class="grid-line-horizontal" style="top: 0;"></div>
+                    <div class="grid-line-horizontal" style="bottom: 0;"></div>
+                    <div class="grid-line-vertical" style="left: 0;"></div>
+                    <div class="grid-line-vertical" style="right: 0;"></div>
+                    <span class="corner-anchor top-left">+</span>
+                    <span class="corner-anchor top-right">+</span>
+                    
+                    <div class="timeline-head">
+                        <div>
+                            <span class="timeline-kicker">May 2026 - Present | Remote</span>
+                            <h2>AI Developer Intern</h2>
+                        </div>
+                        <span class="timeline-badge">Zecser Business LLP</span>
+                    </div>
+                    <ul class="timeline-points">
+                        <li>Building NLP-based document processing pipelines using Python and spaCy.</li>
+                        <li>Developing AI-integrated backend modules for internal tools.</li>
+                        <li>Collaborating on modular system architecture with REST API endpoints.</li>
+                    </ul>
+                    <p class="timeline-tech">Python, NLP, REST APIs, Git, AWS</p>
+                </article>
 
-            <div class="projects-horizontal-deck">
-                <!-- Project 1 -->
-                <div class="project-widget">
+                <!-- Job 2 -->
+                <article class="content-card experience-card reveal-up">
                     <div class="grid-line-horizontal" style="top: 0;"></div>
                     <div class="grid-line-horizontal" style="bottom: 0;"></div>
                     <div class="grid-line-vertical" style="left: 0;"></div>
@@ -256,23 +232,107 @@
                     <span class="corner-anchor top-left">+</span>
                     <span class="corner-anchor top-right">+</span>
 
-                    <div class="project-widget-top">
+                    <div class="timeline-head">
+                        <div>
+                            <span class="timeline-kicker">Dec 2025 - Mar 2026 | Remote</span>
+                            <h2>AI Intern</h2>
+                        </div>
+                        <span class="timeline-badge">Infosys Springboard</span>
+                    </div>
+                    <ul class="timeline-points">
+                        <li>Completed structured AI/ML training covering supervised learning, model evaluation, and NLP fundamentals.</li>
+                        <li>Built and evaluated classification models using Python and scikit-learn.</li>
+                        <li>Worked on 3+ hands-on projects involving data preprocessing and model training.</li>
+                    </ul>
+                    <p class="timeline-tech">Python, Machine Learning, Model Training, Data Analysis</p>
+                </article>
+
+                <!-- Job 3 -->
+                <article class="content-card experience-card reveal-up">
+                    <div class="grid-line-horizontal" style="top: 0;"></div>
+                    <div class="grid-line-horizontal" style="bottom: 0;"></div>
+                    <div class="grid-line-vertical" style="left: 0;"></div>
+                    <div class="grid-line-vertical" style="right: 0;"></div>
+                    <span class="corner-anchor top-left">+</span>
+                    <span class="corner-anchor top-right">+</span>
+
+                    <div class="timeline-head">
+                        <div>
+                            <span class="timeline-kicker">Jun 2025 - Oct 2025 | Remote</span>
+                            <h2>Web Developer Intern</h2>
+                        </div>
+                        <span class="timeline-badge">Grohub</span>
+                    </div>
+                    <ul class="timeline-points">
+                        <li>Developed and maintained responsive web pages using HTML, CSS, JavaScript, and modern web technologies.</li>
+                        <li>Assisted in building and improving user interfaces for client and internal web projects.</li>
+                        <li>Collaborated with the development and design teams to implement clean, user-friendly UI components.</li>
+                        <li>Optimized website performance, responsiveness, and cross-browser compatibility.</li>
+                    </ul>
+                    <p class="timeline-tech">Figma, Canva, Adobe Tools, UI/UX Design</p>
+                </article>
+
+                <!-- Job 4 -->
+                <article class="content-card experience-card reveal-up">
+                    <div class="grid-line-horizontal" style="top: 0;"></div>
+                    <div class="grid-line-horizontal" style="bottom: 0;"></div>
+                    <div class="grid-line-vertical" style="left: 0;"></div>
+                    <div class="grid-line-vertical" style="right: 0;"></div>
+                    <span class="corner-anchor top-left">+</span>
+                    <span class="corner-anchor top-right">+</span>
+
+                    <div class="timeline-head">
+                        <div>
+                            <span class="timeline-kicker">Jun 2025 | On-site - Thrissur</span>
+                            <h2>Web Developer Intern</h2>
+                        </div>
+                        <span class="timeline-badge">Eqsoft Business Solutions</span>
+                    </div>
+                    <ul class="timeline-points">
+                        <li>Developed and maintained responsive web and mobile application modules using ASP.NET and Flutter.</li>
+                        <li>Integrated REST APIs and debugged cross-platform compatibility issues.</li>
+                    </ul>
+                    <p class="timeline-tech">ASP.NET, Flutter, REST APIs, SQL, Git</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects" class="content-section">
+            <div class="section-header">
+                <span class="section-tag reveal-up">What I've Built</span>
+                <h1 class="section-title reveal-up">My Projects</h1>
+                <p class="section-subtitle reveal-up">A curated selection of my work. Check my GitHub for more repositories.</p>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="grid-line-horizontal" style="top: 0;"></div>
+                    <div class="grid-line-horizontal" style="bottom: 0;"></div>
+                    <div class="grid-line-vertical" style="left: 0;"></div>
+                    <div class="grid-line-vertical" style="right: 0;"></div>
+                    <span class="corner-anchor top-left">+</span>
+                    <span class="corner-anchor top-right">+</span>
+
+                    <div class="project-card-top">
                         <span class="project-emoji">&#128640;</span>
                         <div class="project-tags">
                             <span class="tag">AI</span>
+                            <span class="tag">FastAPI</span>
                             <span class="tag">React</span>
                         </div>
                     </div>
                     <h3>DocPilot AI</h3>
-                    <p>Transforming repositories into interactive code graphs, documentation, and security reports to understand codebases faster.</p>
+                    <p>Transforming GitHub repositories into structured documentation, interactive code graphs, and API insights to help developers understand codebases faster.</p>
                     <div class="project-actions">
-                        <a href="https://repo-documentation.vercel.app/" class="project-link" target="_blank">DEMO <i class="fas fa-arrow-right"></i></a>
-                        <a href="https://github.com/Sarangk2024/RepoDocumentation" class="project-link" target="_blank">GITHUB <i class="fab fa-github"></i></a>
+                        <a href="https://repo-documentation.vercel.app/" class="project-link" target="_blank">Live Demo <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://github.com/Sarangk2024/RepoDocumentation" class="project-link" target="_blank">GitHub <i class="fab fa-github"></i></a>
                     </div>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="project-widget">
+                <div class="project-card">
                     <div class="grid-line-horizontal" style="top: 0;"></div>
                     <div class="grid-line-horizontal" style="bottom: 0;"></div>
                     <div class="grid-line-vertical" style="left: 0;"></div>
@@ -280,22 +340,22 @@
                     <span class="corner-anchor top-left">+</span>
                     <span class="corner-anchor top-right">+</span>
 
-                    <div class="project-widget-top">
+                    <div class="project-card-top">
                         <span class="project-emoji">&#129302;</span>
                         <div class="project-tags">
                             <span class="tag">AI</span>
-                            <span class="tag">HR</span>
+                            <span class="tag">Recruitment</span>
                         </div>
                     </div>
                     <h3>Zecpath AI</h3>
-                    <p>Automated recruitment helper tool utilizing neural networks to extract resume details and align matches to requirements.</p>
+                    <p>An automated recruitment platform using AI to analyze resumes, match candidates with job criteria, and streamline screening workflows.</p>
                     <div class="project-actions">
-                        <a href="https://github.com/Sarangk2024" class="project-link" target="_blank">ONGOING <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://github.com/Sarangk2024" class="project-link" target="_blank">Ongoing <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
 
                 <!-- Project 3 -->
-                <div class="project-widget">
+                <div class="project-card">
                     <div class="grid-line-horizontal" style="top: 0;"></div>
                     <div class="grid-line-horizontal" style="bottom: 0;"></div>
                     <div class="grid-line-vertical" style="left: 0;"></div>
@@ -303,23 +363,23 @@
                     <span class="corner-anchor top-left">+</span>
                     <span class="corner-anchor top-right">+</span>
 
-                    <div class="project-widget-top">
+                    <div class="project-card-top">
                         <span class="project-emoji">&#128279;</span>
                         <div class="project-tags">
-                            <span class="tag">Chain</span>
+                            <span class="tag">Blockchain</span>
                             <span class="tag">NFC</span>
                         </div>
                     </div>
-                    <h3>Anti-Fake Chain</h3>
-                    <p>Counterfeit product trace system running verification checks against registered NFC tags on a secure blockchain ledger.</p>
+                    <h3>Fake Product Detection</h3>
+                    <p>Blockchain-based counterfeit detection using NFC. Products are registered on-chain and verified in real-time via NFC scan.</p>
                     <div class="project-actions">
-                        <a href="https://supply-chain-1-0rut.onrender.com/" class="project-link" target="_blank">LIVE <i class="fas fa-arrow-right"></i></a>
-                        <a href="https://github.com/Sarangk2024/fake-product-backend" class="project-link" target="_blank">GITHUB <i class="fab fa-github"></i></a>
+                        <a href="https://supply-chain-1-0rut.onrender.com/" class="project-link" target="_blank">Live <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://github.com/Sarangk2024/fake-product-backend" class="project-link" target="_blank">GitHub <i class="fab fa-github"></i></a>
                     </div>
                 </div>
 
                 <!-- Project 4 -->
-                <div class="project-widget">
+                <div class="project-card">
                     <div class="grid-line-horizontal" style="top: 0;"></div>
                     <div class="grid-line-horizontal" style="bottom: 0;"></div>
                     <div class="grid-line-vertical" style="left: 0;"></div>
@@ -327,23 +387,23 @@
                     <span class="corner-anchor top-left">+</span>
                     <span class="corner-anchor top-right">+</span>
 
-                    <div class="project-widget-top">
+                    <div class="project-card-top">
                         <span class="project-emoji">&#127807;</span>
                         <div class="project-tags">
-                            <span class="tag">AI</span>
-                            <span class="tag">Leaf</span>
+                            <span class="tag">AI/ML</span>
+                            <span class="tag">Web App</span>
                         </div>
                     </div>
                     <h3>AgriDetect AI</h3>
-                    <p>Computer Vision classifier evaluating agricultural leaf photos to identify infections and recommend direct treatment details.</p>
+                    <p>Deep learning app that identifies plant leaf diseases from images, offering farmers immediate corrective treatments.</p>
                     <div class="project-actions">
-                        <a href="https://agridetectai.vercel.app/" class="project-link" target="_blank">LIVE <i class="fas fa-arrow-right"></i></a>
-                        <a href="https://github.com/Sarangk2024/AgriDetect-AI" class="project-link" target="_blank">GITHUB <i class="fab fa-github"></i></a>
+                        <a href="https://agridetectai.vercel.app/" class="project-link" target="_blank">Live <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://github.com/Sarangk2024/AgriDetect-AI" class="project-link" target="_blank">GitHub <i class="fab fa-github"></i></a>
                     </div>
                 </div>
 
                 <!-- Project 5 -->
-                <div class="project-widget">
+                <div class="project-card">
                     <div class="grid-line-horizontal" style="top: 0;"></div>
                     <div class="grid-line-horizontal" style="bottom: 0;"></div>
                     <div class="grid-line-vertical" style="left: 0;"></div>
@@ -351,108 +411,151 @@
                     <span class="corner-anchor top-left">+</span>
                     <span class="corner-anchor top-right">+</span>
 
-                    <div class="project-widget-top">
+                    <div class="project-card-top">
                         <span class="project-emoji">&#128172;</span>
                         <div class="project-tags">
                             <span class="tag">Firebase</span>
                             <span class="tag">JS</span>
                         </div>
                     </div>
-                    <h3>Realtime Chat</h3>
-                    <p>Clean instant messenger utilizing serverless Firebase DB and authenticated sessions with low-latency sockets.</p>
+                    <h3>Chat Application</h3>
+                    <p>Real-time chat platform with instant messaging and authentication, utilizing Firebase as a serverless database.</p>
                     <div class="project-actions">
-                        <a href="https://huggingface.co/spaces/kuttu-2003/mygenapi" class="project-link" target="_blank">LIVE <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://huggingface.co/spaces/kuttu-2003/mygenapi" class="project-link" target="_blank">Live <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://huggingface.co/spaces/kuttu-2003/mygenapi/tree/main" class="project-link" target="_blank">Source <i class="fas fa-code"></i></a>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card">
+                    <div class="grid-line-horizontal" style="top: 0;"></div>
+                    <div class="grid-line-horizontal" style="bottom: 0;"></div>
+                    <div class="grid-line-vertical" style="left: 0;"></div>
+                    <div class="grid-line-vertical" style="right: 0;"></div>
+                    <span class="corner-anchor top-left">+</span>
+                    <span class="corner-anchor top-right">+</span>
+
+                    <div class="project-card-top">
+                        <span class="project-emoji">&#9992;</span>
+                        <div class="project-tags">
+                            <span class="tag">AI</span>
+                            <span class="tag">Chatbot</span>
+                        </div>
+                    </div>
+                    <h3>Dubai Trip Assistant</h3>
+                    <p>Generative AI travel assistant that provides tips, bookings help, and customized itineraries for tourists visiting Dubai.</p>
+                    <div class="project-actions">
+                        <a href="https://github.com/Sarangk2024/chatbot" class="project-link" target="_blank">GitHub <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="panel-coordinate">SYS.LOC // 00.04</div>
         </section>
 
-        <!-- PANEL 5: CONTACT & RESUME -->
-        <section id="contact" class="content-panel contact-panel">
+        <!-- RESUME SECTION -->
+        <section id="resume" class="content-section">
             <div class="section-header">
-                <span class="section-tag">[05] GATEWAY</span>
-                <h1 class="section-title">Get in Touch</h1>
+                <span class="section-tag reveal-up">Download</span>
+                <h1 class="section-title reveal-up">My Resume</h1>
             </div>
+            
+            <div class="content-card resume-card reveal-up">
+                <!-- Grid Lines and Corner Anchors -->
+                <div class="grid-line-horizontal" style="top: 0;"></div>
+                <div class="grid-line-horizontal" style="bottom: 0;"></div>
+                <div class="grid-line-vertical" style="left: 0;"></div>
+                <div class="grid-line-vertical" style="right: 0;"></div>
+                <span class="corner-anchor top-left">+</span>
+                <span class="corner-anchor top-right">+</span>
+                <span class="corner-anchor bottom-left">+</span>
+                <span class="corner-anchor bottom-right">+</span>
 
-            <div class="contact-split-grid">
-                <!-- Left Resume Panel -->
-                <div class="blueprint-card resume-subpanel">
-                    <div class="grid-line-horizontal" style="top: 0;"></div>
-                    <div class="grid-line-horizontal" style="bottom: 0;"></div>
-                    <div class="grid-line-vertical" style="left: 0;"></div>
-                    <div class="grid-line-vertical" style="right: 0;"></div>
-                    <span class="corner-anchor top-left">+</span>
-                    <span class="corner-anchor top-right">+</span>
+                <div class="resume-icon"><i class="fas fa-file-arrow-down"></i></div>
+                <h2>Sarang K - Resume</h2>
+                <p>Download my latest curriculum vitae highlighting my studies, skills, projects, and work history.</p>
+                <a href="assets/resume.pdf" download="Sarang-K-Resume.pdf" class="submit-btn resume-download">
+                    <span class="btn-text">Download Resume</span>
+                    <span class="btn-icon"><i class="fas fa-download"></i></span>
+                </a>
+            </div>
+        </section>
 
-                    <div class="resume-icon"><i class="fas fa-file-arrow-down"></i></div>
-                    <h2>Sarang K - CV</h2>
-                    <p>Download my compiled developer CV detailing my studies, skills, projects, and work history.</p>
-                    <a href="assets/resume.pdf" download="Sarang-K-Resume.pdf" class="submit-btn resume-download">
-                        <span class="btn-text">DOWNLOAD CV</span>
-                        <span class="btn-icon"><i class="fas fa-download"></i></span>
-                    </a>
-                </div>
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="content-section">
+            <div class="section-header">
+                <span class="section-tag reveal-up">Say Hello</span>
+                <h1 class="section-title reveal-up">Get in Touch</h1>
+            </div>
+            
+            <div class="content-card contact-card reveal-up">
+                <!-- Grid Lines and Corner Anchors -->
+                <div class="grid-line-horizontal" style="top: 0;"></div>
+                <div class="grid-line-horizontal" style="bottom: 0;"></div>
+                <div class="grid-line-vertical" style="left: 0;"></div>
+                <div class="grid-line-vertical" style="right: 0;"></div>
+                <span class="corner-anchor top-left">+</span>
+                <span class="corner-anchor top-right">+</span>
+                <span class="corner-anchor bottom-left">+</span>
+                <span class="corner-anchor bottom-right">+</span>
 
-                <!-- Right Contact Form Console -->
-                <div class="blueprint-card contact-form-subpanel">
-                    <div class="grid-line-horizontal" style="top: 0;"></div>
-                    <div class="grid-line-horizontal" style="bottom: 0;"></div>
-                    <div class="grid-line-vertical" style="left: 0;"></div>
-                    <div class="grid-line-vertical" style="right: 0;"></div>
-                    <span class="corner-anchor top-left">+</span>
-                    <span class="corner-anchor top-right">+</span>
-
-                    <form id="contactForm" class="contact-form" novalidate>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="name">Your Name</label>
-                                <input type="text" id="name" name="name" placeholder="John Doe" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Your Email</label>
-                                <input type="email" id="email" name="email" placeholder="john@example.com" required>
-                            </div>
+                <p class="contact-intro">Feel free to reach out to me for new opportunities, collaborations, or just to say hi! I will get back to you as soon as possible.</p>
+                
+                <form id="contactForm" class="contact-form" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" placeholder="John Doe" required>
                         </div>
                         <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" placeholder="Tell me about your project..." rows="4" required></textarea>
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" name="email" placeholder="john@example.com" required>
                         </div>
-                        
-                        <button type="submit" class="submit-btn" id="submitBtn">
-                            <span class="btn-text">SEND PACKET</span>
-                            <span class="btn-icon"><i class="fas fa-paper-plane"></i></span>
-                            <span class="btn-loading" style="display:none;"><i class="fas fa-spinner fa-spin"></i></span>
-                        </button>
-                        <div id="formStatus" class="form-status"></div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Tell me about your project or opportunity..." rows="5" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="btn-text">Send Message</span>
+                        <span class="btn-icon"><i class="fas fa-paper-plane"></i></span>
+                        <span class="btn-loading" style="display:none;"><i class="fas fa-spinner fa-spin"></i></span>
+                    </button>
+                    <div id="formStatus" class="form-status"></div>
+                </form>
             </div>
-
-            <footer class="panel-footer">
-                <div class="footer-brand">
-                    <span class="footer-logo">SARANG.OS</span>
-                    <p>Located in Kerala, India // Copyright <span id="footer-year"></span></p>
-                </div>
-                <div class="footer-social">
-                    <a href="https://www.linkedin.com/in/sarang-k-37073226b" target="_blank" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/Sarangk2024" target="_blank" class="footer-social-link"><i class="fab fa-github"></i></a>
-                </div>
-            </footer>
-            <div class="panel-coordinate">SYS.LOC // 00.05</div>
         </section>
 
+        <footer class="footer">
+            <div class="footer-inner">
+                <div class="footer-top">
+                    <div class="footer-brand">
+                        <span class="footer-logo">SARANG K</span>
+                        <p>Software Developer and Full Stack Developer</p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/in/sarang-k-37073226b" target="_blank" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/Sarangk2024" target="_blank" class="footer-social-link"><i class="fab fa-github"></i></a>
+                        <a href="https://www.instagram.com/sarang_k____?utm_source=qr&igsh=bmc3aXUyYnN5MmRp" target="_blank" class="footer-social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://x.com/SarangK451455" target="_blank" class="footer-social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>Located in Kottayodi, Kerala, India</p>
+                    <p class="copyright"><span id="footer-year"></span> Sarang K. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
     </div>
 
-    <!-- Chatbot FAB -->
+    <!-- Native Chatbot FAB -->
     <button class="chatbot-fab" id="chatbotBtn" aria-label="Open AI Chatbot">
         <i class="fas fa-robot" id="chatbotOpenIcon"></i>
         <i class="fas fa-times" id="chatbotCloseIcon" style="display:none;"></i>
         <span class="fab-pulse"></span>
-        <span class="fab-tooltip">AI.TERMINAL</span>
+        <span class="fab-tooltip">Chat with AI</span>
     </button>
     
-    <!-- Chatbot Modal -->
+    <!-- Native Chatbot Modal -->
     <div class="chatbot-modal" id="chatbotModal">
         <div class="chatbot-modal-header">
             <div class="chatbot-title">
@@ -464,8 +567,16 @@
             </div>
             <button class="chatbot-close-btn" id="chatbotCloseBtn"><i class="fas fa-times"></i></button>
         </div>
-        <div class="chatbot-modal-body">
-            <iframe src="https://kuttu-2003-mygenapi.hf.space" frameborder="0" width="100%" height="100%" title="Sarang AI Chatbot" loading="lazy"></iframe>
+        <div class="chatbot-modal-body chat-body-native">
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-bubble bot-bubble">
+                    Hello! I am Sarang's AI Assistant. Ask me anything about Sarang's skills, projects, internships, or programming in general!
+                </div>
+            </div>
+            <form class="chat-input-area" id="chatInputArea">
+                <input type="text" id="chatInput" placeholder="Ask a question..." autocomplete="off" required>
+                <button type="submit" id="chatSendBtn"><i class="fas fa-paper-plane"></i></button>
+            </form>
         </div>
     </div>
     <div class="chatbot-backdrop" id="chatbotBackdrop"></div>
