@@ -126,21 +126,23 @@ function initThree() {
     particleGeometry = new THREE.BufferGeometry();
     particleGeometry.setAttribute('position', new THREE.BufferAttribute(currentPositions, 3));
 
-    // Subtle white dots for retro-futuristic styling
+    // Subtle white dots for retro-futuristic styling (scaled down and dimmed for legibility)
     const material = new THREE.PointsMaterial({
         color: 0xffffff,
-        size: 0.13,
+        size: 0.11,
         transparent: true,
-        opacity: 0.45,
+        opacity: 0.22,
         sizeAttenuation: true
     });
 
     particleSystem = new THREE.Points(particleGeometry, material);
+    particleSystem.position.z = -15; // Set deep behind layout content layers
     scene.add(particleSystem);
 
     // Background Three.js subtle grid to ground the 3D space
-    const gridHelper = new THREE.GridHelper(70, 35, 0x333333, 0x111111);
+    const gridHelper = new THREE.GridHelper(70, 35, 0x222222, 0x0a0a0a);
     gridHelper.position.y = -18;
+    gridHelper.position.z = -15;
     gridHelper.rotation.x = Math.PI / 12;
     scene.add(gridHelper);
 
@@ -155,8 +157,8 @@ function initThree() {
         const positions = posAttr.array;
         const target = targetShapes[activeShapeIndex];
 
-        // Project mouse position to virtual magnet coords in 3D
-        const magnet = new THREE.Vector3(mouseX * 25, -mouseY * 20, 0);
+        // Project mouse position to virtual magnet coords in 3D (adjusted for Z-descent)
+        const magnet = new THREE.Vector3(mouseX * 25, -mouseY * 20, -15);
 
         for (let i = 0; i < N; i++) {
             let px = positions[i*3];
@@ -206,7 +208,7 @@ function initThree() {
         camera.position.x += (pathX - camera.position.x) * 0.05;
         camera.position.y += (pathY - mouseY * 4 - camera.position.y) * 0.05;
         camera.position.z += (pathZ - camera.position.z) * 0.05;
-        camera.lookAt(0, pathY, 0);
+        camera.lookAt(0, pathY, -15);
 
         renderer.render(scene, camera);
     })();
@@ -243,7 +245,7 @@ function initCursor() {
         requestAnimationFrame(trackRing);
     })();
 
-    document.querySelectorAll('a, button, .project-schematic-item, .skill-item-hud, .timeline-node, input, textarea, .chat-bubble, #chatSendBtn').forEach(el => {
+    document.querySelectorAll('a, button, .project-schematic-item, .skill-item-hud, .node-content, input, textarea, .chat-bubble, #chatSendBtn').forEach(el => {
         el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
         el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
     });
@@ -319,7 +321,11 @@ function initScrollAnimations() {
         onToggle: self => { if (self.isActive) activeShapeIndex = 1; }
     });
     ScrollTrigger.create({
-        trigger: '#timeline', start: 'top center', end: 'bottom center',
+        trigger: '#experience', start: 'top center', end: 'bottom center',
+        onToggle: self => { if (self.isActive) activeShapeIndex = 2; }
+    });
+    ScrollTrigger.create({
+        trigger: '#education', start: 'top center', end: 'bottom center',
         onToggle: self => { if (self.isActive) activeShapeIndex = 2; }
     });
     ScrollTrigger.create({
@@ -400,7 +406,7 @@ function initScrollAnimations() {
 // ===== TILT HUD CARDS EFFECT =====
 function initTilt() {
     if (window.matchMedia('(hover: none)').matches) return;
-    const cards = document.querySelectorAll('.hud-container, .project-schematic-item, .open-timeline-rail, .timeline-node');
+    const cards = document.querySelectorAll('.hud-container, .project-schematic-item, .node-content');
     cards.forEach(card => {
         card.addEventListener('mousemove', e => {
             const rect = card.getBoundingClientRect();

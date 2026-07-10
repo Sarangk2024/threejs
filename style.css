@@ -8,7 +8,7 @@
 :root {
     --bg: #000000;
     --bg-2: #080808;
-    --surface: rgba(10, 10, 10, 0.4);
+    --surface: rgba(10, 10, 10, 0.5);
     --surface-2: rgba(20, 20, 20, 0.7);
     
     /* Typography */
@@ -90,7 +90,7 @@ body::before {
 /* Three.js Background Particle Container */
 #three-container {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    z-index: 0; pointer-events: none;
+    z-index: -2; pointer-events: none;
 }
 
 /* Drawing Layout Grid Lines */
@@ -130,7 +130,7 @@ body::before {
     position: fixed; top: 0; left: 0; width: 100%;
     display: flex; align-items: center; justify-content: space-between;
     padding: 1.5rem 4rem;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
     z-index: 100; transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
@@ -204,7 +204,11 @@ body::before {
     max-width: 1050px;
     width: 100%;
     z-index: 10;
-    background: transparent;
+    background: rgba(8, 8, 8, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
 }
 .hud-divider-vertical {
     width: 1px;
@@ -215,14 +219,14 @@ body::before {
 
 /* Hero HUD Grid layout */
 .hero-hud {
-    padding: 3rem 0;
+    padding: 3.5rem 0;
     align-items: center;
 }
 .hud-column {
     padding: 0 2.5rem;
 }
 .left-hud {
-    flex: 1;
+    flex: 1.1;
     display: flex;
     justify-content: center;
 }
@@ -230,7 +234,7 @@ body::before {
     flex: 2;
 }
 .right-hud {
-    flex: 1;
+    flex: 1.1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -290,6 +294,7 @@ body::before {
     line-height: 1; margin-bottom: 0.5rem;
     color: var(--text);
     text-transform: uppercase;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.9);
 }
 .hero-role {
     font-family: var(--font-pixel);
@@ -362,7 +367,7 @@ body::before {
     gap: 0.65rem;
     padding: 0.5rem 0.8rem;
     border-radius: 4px;
-    background: var(--surface);
+    background: rgba(8, 8, 8, 0.85);
     border: 1px solid var(--border);
     transition: all 0.3s ease;
     cursor: default;
@@ -404,7 +409,7 @@ body::before {
 .node-dot {
     position: absolute;
     left: 17px;
-    top: 6px;
+    top: 26px;
     width: 7px;
     height: 7px;
     background: var(--text);
@@ -419,12 +424,27 @@ body::before {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    background: rgba(8, 8, 8, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--border);
+    padding: 1.8rem;
+    border-radius: var(--radius);
+    transition: border-color 0.3s, transform 0.1s;
+}
+.node-content:hover {
+    border-color: var(--border-hover);
 }
 .node-content h3 {
     font-family: var(--font-pixel);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: var(--text);
     text-transform: uppercase;
+}
+.timeline-sub {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-light);
 }
 .node-date {
     font-family: var(--font-pixel);
@@ -449,11 +469,15 @@ body::before {
 .projects-schematic-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    border-top: 1px dashed var(--border);
-    border-left: 1px dashed var(--border);
+    border: 1px dashed var(--border);
     max-width: 1000px;
     width: 100%;
     z-index: 10;
+    background: rgba(8, 8, 8, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
 }
 .project-schematic-item {
     padding: 2.5rem;
@@ -463,10 +487,13 @@ body::before {
     flex-direction: column;
     gap: 1rem;
     position: relative;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.1s;
+}
+.project-schematic-item:nth-child(2n) {
+    border-right: none;
 }
 .project-schematic-item:hover {
-    background: rgba(255, 255, 255, 0.015);
+    background: rgba(255, 255, 255, 0.025);
 }
 .project-card-top { display: flex; align-items: center; justify-content: space-between; }
 .project-emoji { font-size: 1.5rem; line-height: 1; }
@@ -507,6 +534,11 @@ body::before {
     z-index: 10;
     padding: 3rem 0;
     position: relative;
+    background: rgba(8, 8, 8, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
 }
 .resume-split-col {
     padding: 0 2.5rem;
@@ -740,7 +772,8 @@ p { font-size: 0.95rem; line-height: 1.7; color: var(--text-muted); margin: 0; }
     .skills-hud { padding: 1rem; }
     .skill-group-col { padding: 1.5rem 0; width: 100%; }
     
-    .projects-schematic-grid { grid-template-columns: 1fr; }
+    .projects-schematic-grid { grid-template-columns: 1fr; border-right: none; }
+    .project-schematic-item { border-right: none; }
     
     .contact-schematic-split { grid-template-columns: 1fr; padding: 1.5rem 0; }
     .resume-split-col, .form-split-col { padding: 1.5rem 0; width: 100%; }
