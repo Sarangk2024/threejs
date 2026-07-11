@@ -877,7 +877,7 @@ function initContactForm() {
                 clearTimeout(timeoutId);
 
                 if (res.ok) {
-                    showStatus('Message sent to n8n workflow successfully!', 'success');
+                    showStatus('Thank you! Your message was sent. Check your email for confirmation!', 'success');
                     form.reset();
                     n8nSuccess = true;
                 }
@@ -898,7 +898,7 @@ function initContactForm() {
                 });
                 const data = await res.json();
                 if (data.success) { 
-                    showStatus('Message sent successfully! (Web3Forms Fallback)', 'success'); 
+                    showStatus('Thank you! Your message was sent. I will get back to you soon!', 'success'); 
                     form.reset(); 
                 } else {
                     throw new Error(data.message || 'Failed');
