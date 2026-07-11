@@ -837,7 +837,7 @@ function initProjectModal() {
 function initContactForm() {
     // Set to your public n8n Webhook URL (e.g., via Ngrok tunnel: "https://your-tunnel.ngrok-free.app/webhook/contact")
     // If left empty, it falls back to Web3Forms automatically.
-    const N8N_WEBHOOK_URL = "https://spicy-wombat-54.loca.lt/webhook/contact-form";
+    const N8N_WEBHOOK_URL = "https://coping-bride-fleshy.ngrok-free.dev/webhook/contact-form";
 
     const form   = document.getElementById('contactForm');
     const status = document.getElementById('formStatus');
@@ -862,7 +862,7 @@ function initContactForm() {
                     method: 'POST',
                     headers: { 
                         'Content-Type': 'application/json',
-                        'Bypass-Tunnel-Reminder': 'true'
+                        'ngrok-skip-browser-warning': 'true'
                     },
                     body: JSON.stringify({ name, email, message })
                 });
