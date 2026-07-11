@@ -844,53 +844,51 @@ function initContactForm() {
     const btn    = document.getElementById('submitBtn');
     if (!form) return;
 
-    // Dynamically set action attributes based on the configuration
-    if (N8N_WEBHOOK_URL) {
-        form.action = N8N_WEBHOOK_URL;
-    } else {
-        form.action = 'https://api.web3forms.com/submit';
-        // Add Web3Forms access key if not already present
-        if (!form.querySelector('input[name="access_key"]')) {
-            const keyInput = document.createElement('input');
-            keyInput.type = 'hidden';
-            keyInput.name = 'access_key';
-            keyInput.value = '1360a426-058e-4c03-9906-5f2cf6e41de2';
-            form.appendChild(keyInput);
-        }
-    }
-
-    form.addEventListener('submit', e => {
+    form.addEventListener('submit', async e => {
+        e.preventDefault();
         const name    = document.getElementById('name').value.trim();
         const email   = document.getElementById('email').value.trim();
         const message = document.getElementById('message').value.trim();
-        
-        if (!name || !email || !message) { 
-            e.preventDefault(); 
-            showStatus('Please fill in all fields.', 'error'); 
-            return; 
-        }
+        if (!name || !email || !message) { showStatus('Please fill in all fields.', 'error'); return; }
 
         const btnText    = btn.querySelector('.btn-text');
         const btnIcon    = btn.querySelector('.btn-icon');
         const btnLoading = btn.querySelector('.btn-loading');
-        
-        btn.disabled = true; 
-        btnText.textContent = 'Sending...'; 
-        btnIcon.style.display = 'none'; 
-        btnLoading.style.display = 'inline';
+        btn.disabled = true; btnText.textContent = 'Sending...'; btnIcon.style.display = 'none'; btnLoading.style.display = 'inline';
 
-        // Set up the listener on our hidden target iframe
-        const iframe = document.getElementById('contact_target');
-        const onLoadHandler = () => {
-            showStatus('Message sent successfully!', 'success');
-            form.reset();
-            btn.disabled = false;
-            btnText.textContent = 'Send Message';
-            btnIcon.style.display = 'inline';
-            btnLoading.style.display = 'none';
-            iframe.removeEventListener('load', onLoadHandler);
-        };
-        iframe.addEventListener('load', onLoadHandler);
+        try {
+            if (N8N_WEBHOOK_URL) {
+                const res = await fetch(N8N_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Bypass-Tunnel-Reminder': 'true'
+                    },
+                    body: JSON.stringify({ name, email, message })
+                });
+                if (res.ok) {
+                    showStatus('Message sent to n8n workflow successfully!', 'success');
+                    form.reset();
+                } else {
+                    throw new Error('Failed to send message to n8n webhook.');
+                }
+            } else {
+                const res  = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        access_key: '1360a426-058e-4c03-9906-5f2cf6e41de2',
+                        name, email, message
+                    })
+                });
+                const data = await res.json();
+                if (data.success) { showStatus('Message sent! I will get back to you soon.', 'success'); form.reset(); }
+                else throw new Error(data.message || 'Failed');
+            }
+        } catch(err) {
+            showStatus((err.message || 'Something went wrong. Please try again!'), 'error');
+        } finally {
+            btn.disabled = false; btnText.textContent = 'Send Message'; btnIcon.style.display = 'inline'; btnLoading.style.display = 'none';
+        }
     });
 
     function showStatus(msg, type) {
