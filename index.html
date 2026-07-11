@@ -420,7 +420,8 @@
                 
                 <!-- Right Contact Form Console -->
                 <div class="form-split-col">
-                    <form id="contactForm" class="contact-form" novalidate>
+                    <iframe name="contact_target" id="contact_target" style="display:none;"></iframe>
+                    <form id="contactForm" class="contact-form" method="POST" target="contact_target" novalidate>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">Your Name</label>
