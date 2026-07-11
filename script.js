@@ -836,8 +836,8 @@ function initProjectModal() {
 // ===== CONTACT FORM =====
 function initContactForm() {
     // Set to your public n8n Webhook URL (e.g., via Ngrok tunnel: "https://your-tunnel.ngrok-free.app/webhook/contact")
-    // If left empty, it falls back to Web3Forms automatically.
-    const N8N_WEBHOOK_URL = "";
+    // If n8n/Ngrok is offline, it will automatically fall back to Web3Forms within 3.5 seconds.
+    const N8N_WEBHOOK_URL = "https://coping-bride-fleshy.ngrok-free.dev/webhook/contact-form";
 
     const form   = document.getElementById('contactForm');
     const status = document.getElementById('formStatus');
@@ -856,23 +856,39 @@ function initContactForm() {
         const btnLoading = btn.querySelector('.btn-loading');
         btn.disabled = true; btnText.textContent = 'Sending...'; btnIcon.style.display = 'none'; btnLoading.style.display = 'inline';
 
-        try {
-            if (N8N_WEBHOOK_URL) {
+        let n8nSuccess = false;
+
+        // 1. Try sending via n8n (if online)
+        if (N8N_WEBHOOK_URL) {
+            try {
+                // Abort request after 3.5 seconds if tunnel is offline
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 3500);
+
                 const res = await fetch(N8N_WEBHOOK_URL, {
                     method: 'POST',
                     headers: { 
                         'Content-Type': 'application/json',
                         'ngrok-skip-browser-warning': 'true'
                     },
-                    body: JSON.stringify({ name, email, message })
+                    body: JSON.stringify({ name, email, message }),
+                    signal: controller.signal
                 });
+                clearTimeout(timeoutId);
+
                 if (res.ok) {
                     showStatus('Message sent to n8n workflow successfully!', 'success');
                     form.reset();
-                } else {
-                    throw new Error('Failed to send message to n8n webhook.');
+                    n8nSuccess = true;
                 }
-            } else {
+            } catch (err) {
+                console.warn('n8n workflow is offline, falling back to Web3Forms:', err);
+            }
+        }
+
+        // 2. Fall back to Web3Forms if n8n was offline or failed
+        if (!n8nSuccess) {
+            try {
                 const res  = await fetch('https://api.web3forms.com/submit', {
                     method: 'POST', headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -881,14 +897,18 @@ function initContactForm() {
                     })
                 });
                 const data = await res.json();
-                if (data.success) { showStatus('Message sent! I will get back to you soon.', 'success'); form.reset(); }
-                else throw new Error(data.message || 'Failed');
+                if (data.success) { 
+                    showStatus('Message sent successfully! (Web3Forms Fallback)', 'success'); 
+                    form.reset(); 
+                } else {
+                    throw new Error(data.message || 'Failed');
+                }
+            } catch(err) {
+                showStatus((err.message || 'Something went wrong. Please try again!'), 'error');
             }
-        } catch(err) {
-            showStatus((err.message || 'Something went wrong. Please try again!'), 'error');
-        } finally {
-            btn.disabled = false; btnText.textContent = 'Send Message'; btnIcon.style.display = 'inline'; btnLoading.style.display = 'none';
         }
+
+        btn.disabled = false; btnText.textContent = 'Send Message'; btnIcon.style.display = 'inline'; btnLoading.style.display = 'none';
     });
 
     function showStatus(msg, type) {
